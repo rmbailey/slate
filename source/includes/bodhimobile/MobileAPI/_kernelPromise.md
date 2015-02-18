@@ -9,6 +9,9 @@ With it you can easy add success and finished callbacks for the function.
   * `fail` function
   * `success` function
 
+### Here is Video
+<iframe src="https://www.youtube.com/embed/PhAZn_eW9KQ" frameborder="0" allowfullscreen></iframe>
+
 ### Functions
 
 #### then
