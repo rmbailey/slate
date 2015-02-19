@@ -19,9 +19,8 @@ includes:
   - bodhiagent/agentconsole
   - bodhiagent/agentcli
   - bodhiagent/agenttools
-
   - bodhiagent/querying
-
+  
   - bodhimobile/MobileAPI/index
   - bodhimobile/MobileAPI/kernelPromise
   - bodhimobile/MobileAPI/kernelEvents
@@ -34,6 +33,11 @@ includes:
   - bodhimobile/MobileAPI/device
   - bodhimobile/MobileAPI/deviceOrientation
   - bodhimobile/MobileAPI/geofencing
+  
+  - bodhicloud/apitools
+  - bodhicloud/bodhiapi
+  - bodhicloud/envsetup
+  - bodhicloud/gettingstarted
 
 search: true
 ---
