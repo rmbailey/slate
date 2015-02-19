@@ -10,12 +10,13 @@ toc_footers:
 includes:
 
   - gettingstarted
-  - bodhiagent/gettingstarted
+  - bodhiagent/_index
+  - bodhiagent/envsetup
+  - bodhiagent/howto
+  - bodhiagent/AgentApps/index
   - bodhiagent/AgentApps/createingagentapps
   - bodhiagent/AgentApps/extensions
   - bodhiagent/agentconsole
-  - bodhiagent/envsetup
-  - bodhiagent/howto
   - bodhiagent/agentcli
   - bodhiagent/agenttools
 

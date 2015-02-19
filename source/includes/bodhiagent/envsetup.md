@@ -1,4 +1,6 @@
-##Installation
+##Env Setup
+
+###Installation
 
 The agent cli is installed via a platform specific installer or via node package manager (NPM). The cli prefers to be installed globally.
 
@@ -6,7 +8,7 @@ The agent cli is installed via a platform specific installer or via node package
 $> npm install -g agent-cli
 ````
 
-##General Usage
+###General Usage
 
 The general structure of the a command is as follows:
 
@@ -14,7 +16,7 @@ The general structure of the a command is as follows:
 $> npm install agent-cli [options] <action> [arguments]
 ````
 
-###Options
+####Options
 
 Options are prefixed with `-` or `--` to separate them from arguments. Each action defines the options it uses, but the options are consistent in naming and usage across the commands.
 
@@ -29,7 +31,7 @@ long | short | arg    | description
 --home    | -h    | path   | specifies the agent's working directory
 --force   | -F   | none   | directive to override safety logic
 
-###Arguments
+####Arguments
 The cli interprets the first argument (non-option) as the action. All subseuqent arguements are command specific. 
 
 

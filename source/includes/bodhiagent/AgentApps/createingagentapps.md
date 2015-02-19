@@ -1,9 +1,8 @@
-Agent App Structure
-===========
+## Agent App Structure
 
 You can create an application for the agent by following the steps below. 
 
-##App Structure
+App Structure
 
 Apps have 9 major categories:
 
@@ -19,7 +18,7 @@ Apps have 9 major categories:
 
 These categories are described below. 
 
-##Starting Structure
+### Starting Structure
 1. Create a file called app.js.
 2. Insert the following code into the app.js file.
 
@@ -97,10 +96,10 @@ These categories are described below.
 }
 ````
 
-##1. Descriptive Info
+#### 1. Descriptive Info
 This contains identification information for your app.
 
-####Sample
+##### Sample
 ````
   name   : 'app-name',
   version: '0.0.1',
@@ -118,7 +117,7 @@ enabled | Boolean | Preferred | Whether the app is enabled or not
 provider | string | Preferred | Your organization's name
 
 
-##2. Logger Info
+#### 2. Logger Info
 
 These properties determine the log filename and amount of detail that would be recorded to the log file. 
 
@@ -132,6 +131,7 @@ The levels of logging are as follows, listed from the least amount of detail to 
 
 Note: The logger cannot include a reference to the settings, since it is loaded prior to the settings.
 
+#####Sample
 Property | Type | Required | Description | 
 ------| --------- | ------ | -------------
 level | string | Yes   | Your name for the application | 
@@ -139,7 +139,7 @@ version | string | Yes	   | The version number for the application
 
 
 
-##3. App Settings
+####3. App Settings
 
 Your app can have settings by declaring them within the settings object. These settings can then be used throughout your application's code. These values will take the highest precedence in the processing of settings. The precedence rules are:
 
@@ -148,7 +148,7 @@ Your app can have settings by declaring them within the settings object. These s
 3. Any settings added by an extension (lowest precedence)
 
 
-###Sample
+#####Sample
 ````
 [ {property: 'keys:consumerKey', value: 'wWbo8MBQ0nQ' },
   {property: 'rootPath', value: path.join(process.cwd(), 'input') }]
@@ -161,26 +161,26 @@ value | string, function, Boolean, number, object | Yes	   | The value of your s
 
 
 
-##4. Extensions
+####4. Extensions
 Your application may use one or more extensions. Extensions can provide potential configuration components or actual runtime components. Extensions are a good way to design resuable components that can be shared and reused across projects. 
 
 
-###Sample
+#####Sample
 ````
 extensions: [ file: {}]
 ````
 
 Extensions are loaded in the order in which they are specified. 
 
-##5. Services
+####5. Services
 Your app can contain a service. A service is an object that represents a concrete extension of the API.
 
-####Sample
+#####Sample
 ````
 [ { name: 'keys:consumerKey', value: 'wWbo8MBQ0nQ' },
   {property: 'rootPath', value: path.join(process.cwd(), 'input') }]
 ````
-####Specification
+#####Specification
 Property | Type | Required |   Description | 
 ------| --------- | ------ | -------------
 name | string | Yes   | Your name of your service | 
@@ -188,7 +188,7 @@ provider | string | Yes	   | A function or reference to a plugin that creates an
 args | array of strings, functions, objects, booleans | Optional | a list of the dependencies used by the service
 factory | string (constructor, function, literal)| Optional | An enumeration that describes alternate instantiation behavior for the service
 
-####Implicit Properties
+#####Implicit Properties
 Name | Description |
 ------| ---------
 this.name | the name of the service
@@ -196,10 +196,10 @@ this.logger | A reference to the context's logger
 this.publish | a handle to publish a message to the context
 
 
-##6. Sources
+####6. Sources
 A source is an object that sources external events. By creating a source, you can bind events to listeners and start functions and pipelines once the events have been emitted.
 
-####Sample
+#####Sample
 ````
 [ {
    name: 'sampleSource',
@@ -208,7 +208,7 @@ A source is an object that sources external events. By creating a source, you ca
    bindings: { 'created' : 'read' }
    } ]
 ```` 
-####Specification
+#####Specification
 Property | Type | Required |   Description | 
 ------| --------- | ------ | -------------
 name | string | Yes   | Your name of your service | 

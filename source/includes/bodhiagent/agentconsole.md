@@ -1,6 +1,4 @@
-##Usage Commands
-
-###console
+##Agent Console
 
 ````
 $> agent-cli console
@@ -8,7 +6,7 @@ $> agent-cli console
 
 ##Configuration Commands
 
-###reset
+####reset
 
 A reset command is used to reset the agent's state.
 
@@ -21,7 +19,7 @@ long | short | arg    | description
 --home    | -h   | path   | specifies the agent's working directory
 --HARD    | -H   | path   | destroy all state
 
-###revoke
+####revoke
 
 ````
 $> agent-cli revoke
