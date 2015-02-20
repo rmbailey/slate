@@ -91,6 +91,17 @@ html, body {
 
   // This is the logo at the top of the ToC
   &>img {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    display: block;
+  }
+
+  .bodhi-logo
+  {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
     display: block;
   }
 
