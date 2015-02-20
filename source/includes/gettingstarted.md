@@ -7,11 +7,11 @@ This documentation is intended for the developer wanting to integrate into the B
 
 ##Pre-requisites 
 
-#### Creating a Namespace
+#### Creating a namespace
 Contact your Redbook Connect [sales-team ](mailto:ayal.keren@redbookconnect.com) or [Customer Support ](https://www.hotschedules.com/customer-care/) 
 
 
-#### What is a Namespace? 
+#### What is a namespace? 
 A namespace is your secured storage location of Red book Connect’s cloud solution for your business.
 Your namespace utilizes user profiles that are configured by your namespace administrator for different access levels to access your business data (e.g.stores, inventory, labor, and sales data)
 

@@ -1,4 +1,4 @@
-##Env Setup
+##Environment Setup
 
 ###Installation
 
@@ -16,11 +16,11 @@ The general structure of the a command is as follows:
 $> npm install agent-cli [options] <action> [arguments]
 ````
 
-####Options
+###Options
 
 Options are prefixed with `-` or `--` to separate them from arguments. Each action defines the options it uses, but the options are consistent in naming and usage across the commands.
 
-####Common Options
+###Common Options
 
 long | short | arg    | description
 ------| --------- | ------ | -------------
@@ -38,20 +38,20 @@ The cli interprets the first argument (non-option) as the action. All subseuqent
 Each action is described below
 
 
-####Informational Commands
+###Informational Commands
 
 ###help
 
 The command line provides built in helper functions.
 
-####Navigation Help
+###Navigation Help
 For a descriptive list of the commands 
 
 ````
 $> npm install agent-cli --help
 ````
 
-####Action Specific Help
+###Action Specific Help
 
 Action specific help can be requested using the following structure.
 
@@ -81,7 +81,7 @@ CLI splash screen for the agent.
 $> agent-cli info
 ````
 
-####Lifecycle Commands
+###Lifecycle Commands
 
 Lifecycle commands allow an administrator to change and check the run state of an agent.
 
@@ -135,7 +135,7 @@ long | short | arg    | deacription
 --quiet   | -q   | none   | print essential output
 --config  | -f   | path   | specifies the agent's configuration file
 
-####Diagnostic Commands
+###Diagnostic Commands
 
 Diagnostic commands are used by an admin to troubleshoot an agent having trouble entering a running state or to test environmental specific details uniformly across platforms.
 
