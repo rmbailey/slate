@@ -7,4 +7,4 @@ Each type has a set of GET, PUT, PATCH, DELETE api operations depending on the t
 * GET: performs a get operation on that type and will return back any data associated with that type.
 * PUT: usually takes a parameter of the data the user want to put into that type and stores that desired data addition
 * PATCH: usually takes a parameter of the data the user wants to patch for that type, there are examples suggested in the documentation
-* DELETE: warning: performing this operation will cause data loss and using this operation should be used with extreme caution.  Performs a delete operation on that type.
+* DELETE: Performs a delete operation on that type. Warning: performing this operation will cause data loss and using this operation should be used with extreme caution.
