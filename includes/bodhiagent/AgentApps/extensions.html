@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_bodhiagent includes_bodhiagent_AgentApps includes_bodhiagent_AgentApps_extensions">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <a class="bodhi-logo" href="http://redbookconnect.github.io"> <img src="../../../images/logo.png" /> </a>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h2 id="extending-the-agent">Extending the Agent</h2>
+
+<h4 id="concept">Concept</h4>
+
+<p>An Extension is an Object that adds on reusable configuration elements. These configuration elements are call plugins. An extension may provide one or more plugins to the agent or an application. Plugins are used to build runtime components (Sources, Services, Pipelines, Handlers, etc). Extensions are meant to be small reusable chuncks of code that follow in the tradition of Node Modules but conform to a specific interface so they can be loaded by node.js an the agent.</p>
+
+<h4 id="specification">Specification</h4>
+
+<p>An extension must be formally specified in an app or agent configuration file.</p>
+
+<h4 id="spec-rules">Spec Rules</h4>
+
+<ul>
+<li>An Extension specification MUST include a module or a file key</li>
+<li>A module and file attributes are mutually exclusive</li>
+<li>An Extension specification MAY include (configuration) options</li>
+</ul>
+<pre class="highlight plaintext"><code>extensions: [     
+  { module : 'module-id', options : {enabled : true, silent: true}},
+  { file   : './path/to/file', options : {env : debug}},
+],
+</code></pre>
+
+<p><strong>Notes on the module id</strong></p>
+
+<p>Module and file really do the same thing. They are both included for semantic reasons. In general, they are used as follows:</p>
+
+<ul>
+<li>module indicates this is a packaged module resolves using the node module algorithm living (most likely) in the node_modules folder of the agent or app directory.</li>
+<li>file points at a at a JS file that exports a proper extension interface, the root directory of a CommonJS package (the directory containing the package.json</li>
+</ul>
+
+<h4 id="options">Options</h4>
+
+<p>An extension may receive options at attachment time. Options provide a means for declaring environment specific configuration data to the extension. </p>
+
+<p><strong>Note</strong>: Options are not resolved so they SHOULD NOT include references.</p>
+
+<h4 id="resolution-rules">Resolution Rules</h4>
+
+<ul>
+<li>A file path is resolved relative to the specifying containers home directory</li>
+<li>A module or file path that points at a CommonJS package will use the main file or index.js as the extension entry point</li>
+</ul>
+
+<p>For complete detailed information check out the <a href="http://nodejs.org/api/modules.html">nodejs docs</a> </p>
+
+<h4 id="visibility-rules">Visibility Rules</h4>
+
+<ul>
+<li>If the extension is loaded by the agent then the agent and all applications can use the extensions plugins. </li>
+<li>If the extension is declared by the app then only the app can use the extension&rsquo;s plugins.</li>
+<li>If the extension is declared by both the app and the agent the app will use the plugins provided by the extension declared by the app.</li>
+</ul>
+
+<h2 id="implementation">Implementation</h2>
+
+<ul>
+<li>An Extension MUST declare a name</li>
+<li>An Extension SHOULD declare a version</li>
+<li>An Extension MAY declare a description</li>
+<li>An Extension MAY declare a provider</li>
+<li>An Extension MUST be either and object of a function that produces an object</li>
+<li>An Extension MUST expose a method named attach that takes a call callback</li>
+</ul>
+
+<h4 id="prototypical-extension">Prototypical Extension</h4>
+<pre class="highlight plaintext"><code>module.exports = {
+
+    name    : 'my-extension',
+    version : 'major.minor.patch',
+    provider: 'my organization',
+
+    attach: function(options, callback){
+        }   
+}
+</code></pre>
+
+<h4 id="prototypical-extension-module">Prototypical Extension Module</h4>
+<pre class="highlight plaintext"><code>module.extension = function(){
+        'use strict';
+    return {
+        ... prototypical extension
+    }
+}
+</code></pre>
+
+<h4 id="binding-mechanism">Binding Mechanism</h4>
+
+<p>The attach method adds plugins to a particular container</p>
+
+<h4 id="attach-signature">Attach Signature</h4>
+<pre class="highlight plaintext"><code>attach(options, function(err))
+</code></pre>
+
+<table><thead>
+<tr>
+<th>argument</th>
+<th>type</th>
+<th>required</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>options</td>
+<td>object</td>
+<td>optional</td>
+<td>provides the env specific configurations</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>required</td>
+<td>provides a way of returning an runtime error to the container</td>
+</tr>
+</tbody></table>
+
+<p>Callback takes the form of cb(err). The callback MUST be called.</p>
+
+<h4 id="context">Context</h4>
+
+<p>The value of <code class="prettyprint">this</code> provides the mechanism for adding plugins to the container. <code class="prettyprint">this</code> provides the following binding method:</p>
+<pre class="highlight plaintext"><code>this.registerPlugin(namespace, plugin)
+</code></pre>
+
+<table><thead>
+<tr>
+<th>argument</th>
+<th>type</th>
+<th>required</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>namespace</td>
+<td>string, array</td>
+<td>required</td>
+<td>unique naming</td>
+</tr>
+<tr>
+<td>plugin</td>
+<td>object or function</td>
+<td>required</td>
+<td>provides a way of returning an runtime error to the container</td>
+</tr>
+</tbody></table>
+
+<h4 id="prototypical-attachment">Prototypical Attachment</h4>
+<pre class="highlight plaintext"><code>   attach: function(options, callback){
+    var container = this;
+    try{
+             container.registerPlugin(namespace, object)
+             container.registerPlugin([ns, ns, ns], object)
+             callback &amp;&amp; callback()
+    } catch (err){
+         callback &amp;&amp; callback(err)
+    }
+   }    
+</code></pre>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

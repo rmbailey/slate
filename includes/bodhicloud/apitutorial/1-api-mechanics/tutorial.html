@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_bodhicloud includes_bodhicloud_apitutorial includes_bodhicloud_apitutorial_1-api-mechanics includes_bodhicloud_apitutorial_1-api-mechanics_tutorial">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <a class="bodhi-logo" href="http://redbookconnect.github.io"> <img src="../../../../images/logo.png" /> </a>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="overview">Overview</h1>
+
+<h3 id="scope">Scope</h3>
+
+<p>In this tutorial you will explore the basics of the bodhi api using the command line tool.</p>
+
+<h3 id="intended-audience">Intended Audience</h3>
+
+<p>This tutorial is designed for a new developer looking to understand how to interact with data. The tutorial assumes the developer has valid credentials for a namespace, the bodhi command line tool, and has set up their environment.</p>
+
+<h2 id="resource-commands">Resource Commands</h2>
+
+<p>All resource commands take the following structure:</p>
+<pre class="highlight plaintext"><code>&gt; bodhi &lt;action&gt; [options] resources/:resource-name/[:id][?:query]
+</code></pre>
+
+<h3 id="actions">Actions</h3>
+
+<ol>
+<li>get</li>
+<li>count</li>
+<li>post</li>
+<li>put</li>
+<li>put</li>
+<li>delete</li>
+</ol>
+
+<h3 id="resource-url&#39;s">Resource URL&rsquo;s</h3>
+
+<p>All resource URL&rsquo;s should start with <code class="prettyprint">resources</code> and should take care not to prefix with the &rsquo;/&rsquo; character. The &rsquo;/&rsquo; character causes the cli to interpret the partial URL as absolute and will remove the namespace attributed.</p>
+
+<p>A resource collection is referred to by <code class="prettyprint">resources/:resource</code>. A resource instance is referred to by <code class="prettyprint">resources/:resource/:id</code>.</p>
+
+<h2 id="views">Views</h2>
+
+<p>Each command has a default that it presents on response from the service. These views can be overwritten when the CLI is invoked using the the <code class="prettyprint">--view</code> option. The table below shows the default view bindings for each action.</p>
+
+<table><thead>
+<tr>
+<th>view</th>
+<th>defaults for</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>put, patch, delete</td>
+<td>print just the status code</td>
+</tr>
+<tr>
+<td>headers</td>
+<td></td>
+<td>print the headers and status code</td>
+</tr>
+<tr>
+<td>location</td>
+<td>post</td>
+<td>print the value of the location header</td>
+</tr>
+<tr>
+<td>id</td>
+<td></td>
+<td>print the id of the newly created object</td>
+</tr>
+<tr>
+<td>entity</td>
+<td>get</td>
+<td>print the content returned by the server</td>
+</tr>
+<tr>
+<td>all</td>
+<td></td>
+<td>print status, headers, and content</td>
+</tr>
+</tbody></table>
+
+<h2 id="options">Options</h2>
+
+<p>Below are a list of useful options when interacting with resources</p>
+
+<table><thead>
+<tr>
+<th>option</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;file</td>
+<td>file containing resource instance</td>
+</tr>
+<tr>
+<td>&ndash;data</td>
+<td>describe the resource instance inline</td>
+</tr>
+<tr>
+<td>&ndash;color</td>
+<td>print the response object with syntax highlighting</td>
+</tr>
+<tr>
+<td>&ndash;flat</td>
+<td>print the response object without line breaks or indention</td>
+</tr>
+</tbody></table>
+
+<h2 id="reading-resources">Reading Resources</h2>
+
+<h3 id="reading-a-collection-of-resources">Reading a collection of Resources</h3>
+
+<p>Our first query will attempt to extract all the resources in a given collection using the get action.</p>
+<pre class="highlight plaintext"><code>&gt; bodhi get resources/MyResource
+</code></pre>
+
+<h3 id="counting-resources">Counting Resources</h3>
+<pre class="highlight plaintext"><code>&gt; bodhi get resources/MyResource/count
+{ count: 3 }
+</code></pre>
+
+<p>The CLI exposes a shorthand for this command using the count action.</p>
+<pre class="highlight plaintext"><code>&gt; bodhi count resources/MyResource
+{ count: INTEGER }
+</code></pre>
+
+<h3 id="fetch-a-resource-by-id">Fetch a Resource by ID</h3>
+<pre class="highlight plaintext"><code>&gt; bodhi get resources/MyResource/:id
+</code></pre>
+
+<h3 id="fetch-by-unique-attribute">Fetch by unique Attribute</h3>
+<pre class="highlight plaintext"><code>&gt; bodhi get resources/MyResource/:id?where={\"name\":\"My-Name\"}
+</code></pre>
+
+<h2 id="creating-resources">Creating Resources</h2>
+
+<p>Look inside the file resource.json to see the resource description.</p>
+<pre class="highlight plaintext"><code>{
+  name     : ""
+  age      : 0,
+  eligible : false,
+}
+</code></pre>
+
+<p>You can create an instance of new resource instance by posting JSON data to the collection. The API will return the id of the newly created id in the form of a relative resource URI. The new resource to be created can be specified as a file using the -f &ndash;file option and pointing at the resource.json file.</p>
+<pre class="highlight plaintext"><code>&gt; bodhi post resources/MyResource --file resource.json
+:namespace/resources/MyResource/:id
+</code></pre>
+
+<p>If you supply the <code class="prettyprint">--view id</code> option then you will only see the new resource&rsquo;s id.</p>
+<pre class="highlight plaintext"><code>{ eligible: true,
+  age: 12,
+  name: 'My Name',
+  sys_namespace: 'namespace',
+  sys_version: 1,
+  sys_created_at: '2015-01-24T06:57:39+0000',
+  sys_created_by: 'user_name',
+  sys_type_version: 1,
+  sys_id: 'de9a3e93-47fa-4537-a80d-3f3b49b446b1' }
+</code></pre>
+
+<p>Note there are a number of new system attributes that have been added to the resource. Those attributes are read only from an application perspective and are managed on your behalf by the system.</p>
+
+<h3 id="updating-resources">Updating Resources</h3>
+
+<hr>
+
+<p>The system supports two forms of update - replace and patch. When updating a resource it is not necessary to specify any of the system attributes (those that start with the prefix <code class="prettyprint">sys_</code>). Those attributes will be ignored by the API and will be updated by the service.</p>
+
+<h3 id="replacing-the-resource">Replacing the Resource</h3>
+
+<p>A complete update is performed using a PUT. If the command succeeds then the newly specified resource will be assigned to the resource&rsquo;s id. A resource&rsquo;s attributes may be created, changed, or deleted using this action.</p>
+<pre class="highlight plaintext"><code>&gt; bodhi put resources/MyResource/:id --file resource.json
+  Success 204 No Content
+</code></pre>
+<pre class="highlight plaintext"><code>{ eligible: false,
+  age: 12,
+  name: 'my-name',
+  sys_namespace: 'brian',
+  sys_version: 3,
+  sys_created_at: '2015-01-24T07:42:46+0000',
+  sys_created_by: 'admin__brian',
+  sys_type_version: 1,
+  sys_id: 'd5aea468-f165-4d97-af16-7caba756ca43',
+  sys_modified_at: '2015-01-24T08:18:57+0000',
+  sys_modified_by: 'admin__brian' }
+</code></pre>
+
+<p>If you then access the record you will see the last modified time stamp has been changed and the instance_version will be incremented.</p>
+<pre class="highlight plaintext"><code>&gt; bodhi get resource/MyResource/:id
+  {
+    ...
+    sys_version    :  version++
+    sys_modified_at: 'ISO-TS-FOR-NOW'
+    sys_modified_by: 'your-user-id'
+  }
+</code></pre>
+
+<h2 id="deleting-resources">Deleting Resources</h2>
+
+<h3 id="delete-a-resource">Delete a Resource</h3>
+
+<p>Most of the time we will delete a resource by id. In this case we use a relative resource uri with an id at the end of the path. </p>
+<pre class="highlight plaintext"><code>&gt; bodhi delete resources/MyResource/:id
+Success 204 No Content
+</code></pre>
+
+<p>If an resource matching that id exists then you will receive an HTTP 204. If no resource with the specified id exists then the API will return a 404 Not Found status.</p>
+
+<h3 id="delete-the-entire-collection">Delete the entire Collection</h3>
+
+<p>If you want to delete all resources in a particular collection the use the following command. </p>
+<pre class="highlight plaintext"><code>&gt; bodhi delete resources/MyResource
+Success 204 No Content
+</code></pre>
+
+<p>If the command returns successfully then you will receive an HTTP 204 and all the records will be deleted. You can verify the results of this command by trying to read the entire collection</p>
+<pre class="highlight plaintext"><code>&gt; bodhi get resource/MyResource
+[]
+</code></pre>
+
+<p>or by getting the count and verifying that it returns 0.</p>
+<pre class="highlight plaintext"><code>&gt; bodhi count resources/MyResource
+{count: 0}
+</code></pre>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

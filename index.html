@@ -8,12 +8,12 @@
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["javascript"]);
         });
       </script>
   </head>
@@ -26,11 +26,9 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <a class="bodhi-logo" href="http://redbookconnect.github.io"> <img src="images/logo.png" /> </a>
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -39,217 +37,3583 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        
+          <h1 id="getting-started">Getting Started</h1>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>This documentation is intended for the developer wanting to integrate into the Bodhi PaaS (Platform as a Service) and SaaS (Software as a Service) by:</p>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<ul>
+<li>Building applications to the the Bodhi Cloud APIs</li>
+<li>Building mobile/html applications either as standalone html applications or to be part of Bodhi Mobile</li>
+<li>Building a data integration application into your point of sale system to be stored and accessed from our cloud solution</li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<h2 id="pre-requisites">Pre-requisites</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<h4 id="creating-a-namespace">Creating a namespace</h4>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>Contact your Redbook Connect <a href="mailto:ayal.keren@redbookconnect.com">sales-team </a> or <a href="https://www.hotschedules.com/customer-care/">Customer Support </a> </p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<h4 id="what-is-a-namespace?">What is a namespace?</h4>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>A namespace is your secured storage location of Red book Connect’s cloud solution for your business.
+Your namespace utilizes user profiles that are configured by your namespace administrator for different access levels to access your business data (e.g.stores, inventory, labor, and sales data)</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<h4 id="creating-your-namespace">Creating your namespace</h4>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>You need to provide two important details for Red Book Connect <a href="mailto:ayal.keren@redbookconnect.com">Representative</a>:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li>Name</li>
+<li>Email Address</li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<h4 id="accessing-the-api-documentation">Accessing the API documentation</h4>
+
+<p>The API Documentation can be found at here: <a href="https://api.bodhi.space/apidocs/index.html">https://api.bodhi.space/apidocs/index.html</a>
+To access them you need to login with your user and password provided by Hot Schedules.</p>
+
+          <h1 id="bodhi-agent">Bodhi Agent</h1>
+
+<p>The agent cli provides administrators, support team members, and developers a tool for interacting with an agent.</p>
+
+          <h2 id="environment-setup">Environment Setup</h2>
+
+<h3 id="installation">Installation</h3>
+
+<p>The agent cli is installed via a platform specific installer or via node package manager (NPM). The cli prefers to be installed globally.</p>
+<pre class="highlight plaintext"><code>$&gt; npm install -g agent-cli
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<h3 id="general-usage">General Usage</h3>
 
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p>The general structure of the a command is as follows:</p>
+<pre class="highlight plaintext"><code>$&gt; npm install agent-cli [options] &lt;action&gt; [arguments]
+</code></pre>
+
+<h3 id="options">Options</h3>
+
+<p>Options are prefixed with <code class="prettyprint">-</code> or <code class="prettyprint">--</code> to separate them from arguments. Each action defines the options it uses, but the options are consistent in naming and usage across the commands.</p>
+
+<h3 id="common-options">Common Options</h3>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;help</td>
+<td>none</td>
+<td>none</td>
+<td>print help about the command</td>
+</tr>
+<tr>
+<td>&ndash;verbose</td>
+<td>-v</td>
+<td>none</td>
+<td>print more detailed output</td>
+</tr>
+<tr>
+<td>&ndash;quiet</td>
+<td>-q</td>
+<td>none</td>
+<td>print essential output</td>
+</tr>
+<tr>
+<td>&ndash;config</td>
+<td>-f</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s configuration file</td>
+</tr>
+<tr>
+<td>&ndash;home</td>
+<td>-h</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s working directory</td>
+</tr>
+<tr>
+<td>&ndash;force</td>
+<td>-F</td>
+<td>none</td>
+<td>directive to override safety logic</td>
+</tr>
+</tbody></table>
+
+<h3 id="arguments">Arguments</h3>
+
+<p>The cli interprets the first argument (non-option) as the action. All subseuqent arguements are command specific. </p>
+
+<p>Each action is described below</p>
+
+<h3 id="informational-commands">Informational Commands</h3>
+
+<h3 id="help">help</h3>
+
+<p>The command line provides built in helper functions.</p>
+
+<h3 id="navigation-help">Navigation Help</h3>
+
+<p>For a descriptive list of the commands </p>
+<pre class="highlight plaintext"><code>$&gt; npm install agent-cli --help
+</code></pre>
+
+<h3 id="action-specific-help">Action Specific Help</h3>
+
+<p>Action specific help can be requested using the following structure.</p>
+<pre class="highlight plaintext"><code>$&gt; npm install agent-cli &lt;action&gt; --help
+</code></pre>
+
+<h3 id="version">version</h3>
+
+<p>Print version information.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli --version 
+$&gt; agent-cli -V
+</code></pre>
+
+<p>The output is a simple version identifier following the semantic versioning rules of major, minor, and build.</p>
+<pre class="highlight plaintext"><code>vM.m.b
+</code></pre>
+
+<h3 id="info">info</h3>
+
+<p>CLI splash screen for the agent.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli info
+</code></pre>
+
+<h3 id="lifecycle-commands">Lifecycle Commands</h3>
+
+<p>Lifecycle commands allow an administrator to change and check the run state of an agent.</p>
+
+<h3 id="start">start</h3>
+
+<p>Attempts to start an agent.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli start [options] 
+</code></pre>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>deacription</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;verbose</td>
+<td>-v</td>
+<td>none</td>
+<td>print more detailed output</td>
+</tr>
+<tr>
+<td>&ndash;quiet</td>
+<td>-q</td>
+<td>none</td>
+<td>print essential output</td>
+</tr>
+<tr>
+<td>&ndash;config</td>
+<td>-f</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s configuration file</td>
+</tr>
+<tr>
+<td>&ndash;home</td>
+<td>-h</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s working directory</td>
+</tr>
+</tbody></table>
+
+<h3 id="status">status</h3>
+
+<p>Provides status about a running agent.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli status [options] 
+</code></pre>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>deacription</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;verbose</td>
+<td>-v</td>
+<td>none</td>
+<td>print more detailed output</td>
+</tr>
+<tr>
+<td>&ndash;quiet</td>
+<td>-q</td>
+<td>none</td>
+<td>print essential output</td>
+</tr>
+<tr>
+<td>&ndash;config</td>
+<td>-f</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s configuration file</td>
+</tr>
+</tbody></table>
+
+<h3 id="stop">stop</h3>
+
+<p>Gracefully shutdown the agent.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli stop [options] 
+</code></pre>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>deacription</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;verbose</td>
+<td>-v</td>
+<td>none</td>
+<td>print more detailed output</td>
+</tr>
+<tr>
+<td>&ndash;quiet</td>
+<td>-q</td>
+<td>none</td>
+<td>print essential output</td>
+</tr>
+<tr>
+<td>&ndash;config</td>
+<td>-f</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s configuration file</td>
+</tr>
+</tbody></table>
+
+<h3 id="diagnostic-commands">Diagnostic Commands</h3>
+
+<p>Diagnostic commands are used by an admin to troubleshoot an agent having trouble entering a running state or to test environmental specific details uniformly across platforms.</p>
+
+<h3 id="check-core">check-core</h3>
+
+<p>Used to check the version of agent-core being used and where that file is located on the file system.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli check-core [options]
+</code></pre>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>deacription</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;config</td>
+<td>-f</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s configuration file</td>
+</tr>
+</tbody></table>
+
+<h3 id="check-config">check-config</h3>
+
+<p>Used to check for configuration problems in the agent. The agent will load and process all configuration files, but will not enter into a ready state. This command is safe to run even if there is a currently running agent.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli check-cofig [options]
+</code></pre>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>deacription</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;config</td>
+<td>-f</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s configuration file</td>
+</tr>
+</tbody></table>
+
+<h3 id="check-connection">check-connection</h3>
+
+<p>Used to check for configuration problems in the agent.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli check-connection [options]
+</code></pre>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>deacription</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;config</td>
+<td>-f</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s configuration file</td>
+</tr>
+</tbody></table>
+
+<p>The provided URL will go through the following checks:</p>
+
+<ol>
+<li>Check the URL format</li>
+<li>Check the DNS resolution from the agent&rsquo;s host</li>
+<li>Check the TCP port is reachable by opening up a connection on host:port</li>
+<li>Issue a HTTP GET against the ping endpoint of the system</li>
+</ol>
+
+<h3 id="check-route">check-route</h3>
+
+<p>Used to check for network problems (firewalls &amp; proxy rules) from the perspective of the agent runtime. </p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli check-route &lt;scheme://host:port/path&gt;
+</code></pre>
+
+<p>The provided URL will go through the following checks:</p>
+
+<ol>
+<li>Parse</li>
+<li>DNS resolve of host/IP</li>
+<li>TCP port reachable by opening up a connection on host:port</li>
+<li>If scheme is http of https then issue a HTTP GET against the specified URL</li>
+</ol>
+
+          <h2 id="agent-installer-and-registration-user-guide">Agent Installer and Registration User Guide</h2>
+
+<p>Agent Installer and Registration User Guide</p>
+
+<p>Welcome to the User Guide for Installing and registering the Bodhi agent</p>
+
+<p><strong>System Requirements for computer</strong>
+OS: Windows XP SP3, Windows 7, Windows 8.1<br>
+Memory: 2GB or more<br>
+Disk Space: 10 GB  </p>
+
+<p><strong>System requirements for Mobile</strong>
+iOS 7.x, 8.x<br>
+Android 4.x<br>
+Windows Phone</p>
+
+<h4 id="step-1:-download-bodhi-installer-and-the-bodhi-mobile-application">Step 1: Download Bodhi Installer and the Bodhi Mobile Application</h4>
+
+<p>Go to redbookconnect.bodhi.io to get the correct installer for your system</p>
+
+<p><img title="figure  1" alt="alt text" src="images/agent_dl_01.png?raw=true" />
+figure 1</p>
+
+<p><strong>NOTE:</strong> if the system you are using to download the installer is not a Windows system you will get the Not Supported.</p>
+
+<p>Just select the Windows system that matches the system you will be installer the Bodhi Agent on.</p>
+
+<p>For the mobile applications here is where you can download them to your device.</p>
+
+<p>Bodhi Mobile - iOS          Apple Apps Store<br>
+Bodhi Mobile - Android      Google Play Store</p>
+
+<h4 id="step-2:-run-the-installer">Step 2:  Run the installer</h4>
+
+<ul>
+<li>You will be presented with the Installer Welcome screen.<br></li>
+<li>This will show the version number of the installer</li>
+</ul>
+
+<p><img title="figure  2" alt="alt text" src="images/agent_ver_01.png?raw=true" /><br>
+figure 2</p>
+
+<h4 id="step-3:-select-the-next-button-to-move-to-the-next-button">Step 3: Select the Next button to move to the next Button</h4>
+
+<p><img title="figure  3" alt="alt text" src="images/agent_inst_01.png?raw=true" /><br>
+figure 3</p>
+
+<h4 id="step-4:-license-agreement-screen">Step 4:  License agreement screen</h4>
+
+<ul>
+<li>The user needs to agree to the user agreement before proceeding.</li>
+</ul>
+
+<p><img title="figure 4" alt="alt text" src="images/agent_legal_01.png?raw=true" /><br>
+figure 4</p>
+
+<p><strong>NOTE:</strong> the Next Button will be greyed out, until the, I accept the agreement radio button is selected.</p>
+
+<h4 id="step-5:-select-the-i-accept-the-agreement-radio-button">Step 5:  Select the I accept the agreement Radio Button</h4>
+
+<p><img title="figure 5" alt="alt text" src="images/agent_legal_02.png?raw=true" /><br>
+figure 5</p>
+
+<h4 id="step-6:-select-the-next-button">Step 6: Select the Next Button</h4>
+
+<p><img title="figure 6" alt="alt text" src="images/agent_legal_03.png?raw=true" /><br>
+figure 6</p>
+
+<h4 id="step-7:-selecting-the-destination-location-for-the-agent">Step 7:  Selecting the Destination location for the Agent</h4>
+
+<ul>
+<li>A default destination location is already provided for the agent. </li>
+</ul>
+
+<p><img title="figure 7" alt="alt text" src="images/agent_dest_01.png?raw=true" /><br>
+figure 7</p>
+
+<p><strong>NOTE:</strong> If this destination location is OK, then select the Next Button.  </p>
+
+<p><img title="figure 8" alt="alt text" src="images/agent_dest_02.png?raw=true" /><br>
+figure 8</p>
+
+<p><strong>Go to Step 8</strong></p>
+
+<h4 id="step-7a:-if-you-wish-to-change-the-location-of-the-destination-location">Step 7a: If you wish to change the location of the destination location</h4>
+
+<h5 id="7a.-select-the-browse-button">7a. Select the Browse Button</h5>
+
+<p><img title="figure 9" alt="alt text" src="images/agent_dest_03.png?raw=true" /><br>
+figure 9</p>
+
+<h5 id="7b.-select-the-folder-you-wish-to-install-the-bodhi-agent-into-or-you-can-open-a-different-folder.">7b. Select the folder you wish to install the Bodhi Agent into or you can open a different folder.</h5>
+
+<p><img title="figure 10" alt="alt text" src="images/agent_dest_04.jpg?raw=true" /><br>
+figure 10</p>
+
+<h5 id="7c.-after-you-have-selected-the-folder">7c. After you have selected the folder</h5>
+
+<p><img title="figure 11" alt="alt text" src="images/agent_dest_05.jpg?raw=true" /><br>
+figure 11</p>
+
+<h5 id="7d.-select-the-ok-button">7d. Select the OK Button</h5>
+
+<p><img title="figure 12" alt="alt text" src="images/agent_dest_06.jpg?raw=true" /><br>
+figure 12  </p>
+
+<p>The New destination location should be displayed  </p>
+
+<p><img title="figure 13" alt="alt text" src="images/agent_dest_01.png?raw=true" /><br>
+figure 13  </p>
+
+<h5 id="7e.-select-the-next-button-to-continue">7e. Select the Next Button to continue</h5>
+
+<p><img title="figure 14" alt="alt text" src="images/agent_dest_02.png?raw=true" /><br>
+figure 14  </p>
+
+<h4 id="step-8:-review-of-destination-location.">Step 8: Review of Destination location.</h4>
+
+<ul>
+<li>The destination location for the install is displayed.</li>
+</ul>
+
+<p><img title="figure 15" alt="alt text" src="images/agent_install_01.png?raw=true" /><br>
+figure 15  </p>
+
+<h4 id="step-9:-select-the-install-button">Step 9: Select the Install Button</h4>
+
+<ul>
+<li>If the Destination location is correct, then </li>
+<li>Select the Install Button</li>
+</ul>
+
+<p><img title="figure 16" alt="alt text" src="images/agent_install_02.png?raw=true" /><br>
+figure 16  </p>
+
+<h5 id="9a.-a-progress-bar-will-be-displayed">9a. A Progress bar will be displayed</h5>
+
+<p><img title="figure 17" alt="alt text" src="images/agent_install_03.png?raw=true" /><br>
+figure 17  </p>
+
+<h4 id="step-10:-completing-the-hotschedules-link-setup-wizard-page">Step 10: Completing the HotSchedules Link Setup Wizard page</h4>
+
+<ul>
+<li>After the Setup Wizard has completed, a checkbox is presented, by default it is selected.</li>
+</ul>
+
+<p><img title="figure 18" alt="alt text" src="images/agent_run_01.png?raw=true" /><br>
+figure 18</p>
+
+<h5 id="10a.-completing-the-hotschedules-link-install">10a. Completing the HotSchedules Link install</h5>
+
+<ul>
+<li>If no change is required, then Select the Finish Button<br></li>
+</ul>
+
+<p><img title="figure 19" alt="alt text" src="images/agent_finished_01.png?raw=true" /><br>
+figure 19  </p>
+
+<h5 id="10b.-command-line-interface-is-opened">10b. Command Line Interface is opened</h5>
+
+<ul>
+<li>A Diagnostics is run</li>
+<li>The Windows Service is started</li>
+<li>Follow the instructions to press any key to continue </li>
+</ul>
+
+<p><img title="figure 20" alt="alt text" src="images/agent_any_01.png?raw=true" /><br>
+figure 20  </p>
+
+<h5 id="10c.-the-command-line-window-should-close-and-you-will-be-at-the-desktop.">10c.  The command line window should close and you will be at the Desktop.</h5>
+
+<p><img title="figure 21" alt="alt text" src="images/agent_desktop_01.png?raw=true" /><br>
+figure 21  </p>
+
+<h4 id="step-11:-register-the-agent-with-a-mobile-device">Step 11: Register the Agent with a Mobile Device</h4>
+
+<ul>
+<li>If you had selected to start the console at the end of the install, then the console will be started in the default browser.</li>
+</ul>
+
+<p><strong>Note:</strong> If your agent is not registered, it will be unable to send any data to the cloud</p>
+
+<ul>
+<li>A Registration Code will be displayed which is used to register the POS with the Mobile Device.</li>
+</ul>
+
+<p><img title="figure 22" alt="alt text" src="images/agent_active_01.png?raw=true" /><br>
+figure 23  </p>
+
+<p><strong>Note:</strong>  If the registration dialog is dismissed before registration
+* Select the Registration Code Menu item on the left to redisplay it</p>
+
+<p><img title="figure 23" alt="alt text" src="images/agent_reg_01.png?raw=true" /><br>
+figure 23  </p>
+
+<h4 id="step-12:-start-the-bodhi-mobile-app">Step 12: Start the Bodhi Mobile App</h4>
+
+<ul>
+<li>This is the Mobile Application that was downloaded earlier to your Mobile Device</li>
+</ul>
+
+<p><img title="figure 23" alt="alt text" src="images/iphone_home_01.png?raw=true" /><br>
+figure 24  </p>
+
+<h4 id="step-13:-enter-the-a-mobile-device">Step 13: Enter the a Mobile Device</h4>
+
+<ul>
+<li>Enter the UserID </li>
+<li>Enter the Password </li>
+<li>Select the Log in Button</li>
+</ul>
+
+<p><img title="figure 25" alt="alt text" src="images/app_login_01.png?raw=true" /><br>
+figure 25  </p>
+
+<h4 id="step-14:-select-the-pos-manager">Step 14: Select the POS Manager</h4>
+
+<p><img title="figure 26" alt="alt text" src="images/pos_mgr_01.png?raw=true" /><br>
+figure 26  </p>
+
+<h4 id="step-15:-select-the-the-plus-sign-to-add-a-pos-to-the-manager">Step 15: Select the the Plus Sign to add a POS to the Manager</h4>
+
+<p><img title="figure 27" alt="alt text" src="images/pos_mgr_02.png?raw=true" /><br>
+figure 27  </p>
+
+<h4 id="step-16:-select-a-store-to-associate-the-pos-with.">Step 16: Select a store to associate the POS with.</h4>
+
+<p><img title="figure 28" alt="alt text" src="images/pos_mgr_03.png?raw=true" /><br>
+figure 28  </p>
+
+<h4 id="step-17:-enter-the-activation-code-that-is-displayed-in-the-browser.">Step 17: Enter the Activation code that is displayed in the Browser.</h4>
+
+<p><img title="figure 29" alt="alt text" src="images/agent_active_02.png?raw=true" /><br>
+figure 29  </p>
+
+<h4 id="step-18:-select-the-request-button.">Step 18: Select the Request Button.</h4>
+
+<p><img title="figure 30" alt="alt text" src="images/agent_active_03.png?raw=true" /><br>
+figure 30  </p>
+
+<h4 id="step-19:-verify-that-pos-agent-with-the-selected-store-and-is-displayed">Step 19: Verify that POS agent with the selected store and is displayed</h4>
+
+<p><img title="figure 31" alt="alt text" src="images/agent_active_04.png?raw=true" /><br>
+figure 31  </p>
+
+<h4 id="step-20:-the-browser-will-display-the-console-dashboard">Step 20: The Browser will display the console dashboard</h4>
+
+<ul>
+<li>A Success message will briefly flash on the screen</li>
+<li>The Registration Code Menu item will be removed</li>
+<li>The Dashboard will be displayed</li>
+</ul>
+
+<p><img title="figure 32" alt="alt text" src="images/agent_console_01.png?raw=true" /><br>
+figure 32  </p>
+
+<h4 id="console-dashboard-legend">Console Dashboard Legend</h4>
+
+<ol>
+<li>This is the status of the agent (e.g. Online, Offline)</li>
+<li>This changes the Left Menu from Icon Only to Icons and Text</li>
+<li>This area displays if there are any agent updates available</li>
+<li>This area displays any apps that the agent has loaded</li>
+<li>This is the Customer Support information</li>
+</ol>
+
+<p><strong>Congratulations on your successful installation of Bodhi Agent</strong></p>
+
+          <p>Agent Apps</p>
+
+<p>Here&rsquo;s some text about what App tools are and how they can be used.</p>
+
+          <h2 id="agent-app-structure">Agent App Structure</h2>
+
+<p>You can create an application for the agent by following the steps below. </p>
+
+<p>App Structure</p>
+
+<p>Apps have 9 major categories:</p>
+
+<ul>
+<li>Descriptive Information</li>
+<li>Logger Settings</li>
+<li>App Settings</li>
+<li>Extensions</li>
+<li>Services</li>
+<li>Sources</li>
+<li>Pipelines</li>
+<li>Handlers</li>
+<li>The init function</li>
+</ul>
+
+<p>These categories are described below. </p>
+
+<h3 id="starting-structure">Starting Structure</h3>
+
+<ol>
+<li>Create a file called app.js.</li>
+<li>Insert the following code into the app.js file.</li>
+</ol>
+<pre class="highlight plaintext"><code>  //- Descriptive Information
+  name   : 'app-name',
+  version: '0.0.1',
+
+  //- Logger Settings
+  logger : {
+    filename: 'logger-filename.log',
+    level   : '' // The level of logging for the app
+  },
+
+  //- App Settings
+  settings: [
+    {property  : '',
+     value     : ''},
+  ],
+
+  //- Extensions
+  extensions: [
+    {file      : ''}
+  ],
+
+  //- Services
+  services: [
+    {
+     name     : '',
+     provider : '',
+    } 
+  ],
+
+  //- Sources
+  sources: [
+    { 
+    name   : '',
+    factory: '',
+    provider: {
+        bind: '',
+        listen : '',
+        close  : ''
+      },
+      bindings: {'eventName'}
+    }
+  ],
+
+  //- Pipelines
+  pipelines: [
+    {
+      name: 'name-of-pipeline',
+      subscriptions: ['name-of-event-that-the-pipeline-subscribes-to'],
+      steps: [
+        {fn: 'extension:name-of-function', props: {key: 'value'},
+        {fn: 'extension:name-of-function', props: {key: 'value'},
+      ]
+    }
+  ],
+
+  //- Handlers
+  handlers: [
+    name: 'name-of-handler',
+    subscriptions: 'name-of-event-the-handler-subscribes-to',
+    fn: '',
+    props: { name: '$key:value' }
+
+  ],
+
+  //- init function, this function is executed after the agent is done with setup
+  init: function(done) {
+    // statements here
+    done();
+  }
+
+}
+</code></pre>
+
+<h4 id="1.-descriptive-info">1. Descriptive Info</h4>
+
+<p>This contains identification information for your app.</p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>  name   : 'app-name',
+  version: '0.0.1',
+  dir    : '',
+  enabled: 
+
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name for the application</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>version</td>
+<td>string</td>
+<td>Yes</td>
+<td>The version number for the application</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>string</td>
+<td>Yes</td>
+<td>Root filesystem path for the application</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Preferred</td>
+<td>Whether the app is enabled or not</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>Preferred</td>
+<td>Your organization&rsquo;s name</td>
 </tr>
 </tbody></table>
 
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h4 id="2.-logger-info">2. Logger Info</h4>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<p>These properties determine the log filename and amount of detail that would be recorded to the log file. </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<p>The levels of logging are as follows, listed from the least amount of detail to the most.</p>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<ol>
+<li>error</li>
+<li>warning</li>
+<li>info</li>
+<li>verbose</li>
+<li>debug</li>
+</ol>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p>Note: The logger cannot include a reference to the settings, since it is loaded prior to the settings.</p>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h5 id="sample">Sample</h5>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>level</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name for the application</td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Yes</td>
+<td>The version number for the application</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+<h4 id="3.-app-settings">3. App Settings</h4>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>Your app can have settings by declaring them within the settings object. These settings can then be used throughout your application&rsquo;s code. These values will take the highest precedence in the processing of settings. The precedence rules are:</p>
+
+<ol>
+<li>App.js settings object (highest precedence)</li>
+<li>Any settings within the js/json files in the settings folder</li>
+<li>Any settings added by an extension (lowest precedence)</li>
+</ol>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>[ {property: 'keys:consumerKey', value: 'wWbo8MBQ0nQ' },
+  {property: 'rootPath', value: path.join(process.cwd(), 'input') }]
+</code></pre>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>property</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name for your property</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>value</td>
+<td>string, function, Boolean, number, object</td>
+<td>Yes</td>
+<td>The value of your setting</td>
 </tr>
 </tbody></table>
+
+<h4 id="4.-extensions">4. Extensions</h4>
+
+<p>Your application may use one or more extensions. Extensions can provide potential configuration components or actual runtime components. Extensions are a good way to design resuable components that can be shared and reused across projects. </p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>extensions: [ file: {}]
+</code></pre>
+
+<p>Extensions are loaded in the order in which they are specified. </p>
+
+<h4 id="5.-services">5. Services</h4>
+
+<p>Your app can contain a service. A service is an object that represents a concrete extension of the API.</p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>[ { name: 'keys:consumerKey', value: 'wWbo8MBQ0nQ' },
+  {property: 'rootPath', value: path.join(process.cwd(), 'input') }]
+</code></pre>
+
+<h5 id="specification">Specification</h5>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name of your service</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>Yes</td>
+<td>A function or reference to a plugin that creates an object</td>
+</tr>
+<tr>
+<td>args</td>
+<td>array of strings, functions, objects, booleans</td>
+<td>Optional</td>
+<td>a list of the dependencies used by the service</td>
+</tr>
+<tr>
+<td>factory</td>
+<td>string (constructor, function, literal)</td>
+<td>Optional</td>
+<td>An enumeration that describes alternate instantiation behavior for the service</td>
+</tr>
+</tbody></table>
+
+<h5 id="implicit-properties">Implicit Properties</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>this.name</td>
+<td>the name of the service</td>
+</tr>
+<tr>
+<td>this.logger</td>
+<td>A reference to the context&rsquo;s logger</td>
+</tr>
+<tr>
+<td>this.publish</td>
+<td>a handle to publish a message to the context</td>
+</tr>
+</tbody></table>
+
+<h4 id="6.-sources">6. Sources</h4>
+
+<p>A source is an object that sources external events. By creating a source, you can bind events to listeners and start functions and pipelines once the events have been emitted.</p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>[ {
+   name: 'sampleSource',
+   provider: 'compris:dir',
+   args: ['$settings:rootPath'],
+   bindings: { 'created' : 'read' }
+   } ]
+</code></pre>
+
+<h5 id="specification">Specification</h5>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name of your service</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>Yes</td>
+<td>A function or reference to a plugin that creates an object</td>
+</tr>
+<tr>
+<td>args</td>
+<td>array of strings, functions, objects, booleans</td>
+<td>Optional</td>
+<td>a list of the dependencies used by the service</td>
+</tr>
+<tr>
+<td>factory</td>
+<td>string (constructor, function, literal)</td>
+<td>Optional</td>
+<td>An enumeration that describes alternate instantiation behavior for the service</td>
+</tr>
+</tbody></table>
+
+          <h2 id="extending-the-agent">Extending the Agent</h2>
+
+<h4 id="concept">Concept</h4>
+
+<p>An Extension is an Object that adds on reusable configuration elements. These configuration elements are call plugins. An extension may provide one or more plugins to the agent or an application. Plugins are used to build runtime components (Sources, Services, Pipelines, Handlers, etc). Extensions are meant to be small reusable chuncks of code that follow in the tradition of Node Modules but conform to a specific interface so they can be loaded by node.js an the agent.</p>
+
+<h4 id="specification">Specification</h4>
+
+<p>An extension must be formally specified in an app or agent configuration file.</p>
+
+<h4 id="spec-rules">Spec Rules</h4>
+
+<ul>
+<li>An Extension specification MUST include a module or a file key</li>
+<li>A module and file attributes are mutually exclusive</li>
+<li>An Extension specification MAY include (configuration) options</li>
+</ul>
+<pre class="highlight plaintext"><code>extensions: [     
+  { module : 'module-id', options : {enabled : true, silent: true}},
+  { file   : './path/to/file', options : {env : debug}},
+],
+</code></pre>
+
+<p><strong>Notes on the module id</strong></p>
+
+<p>Module and file really do the same thing. They are both included for semantic reasons. In general, they are used as follows:</p>
+
+<ul>
+<li>module indicates this is a packaged module resolves using the node module algorithm living (most likely) in the node_modules folder of the agent or app directory.</li>
+<li>file points at a at a JS file that exports a proper extension interface, the root directory of a CommonJS package (the directory containing the package.json</li>
+</ul>
+
+<h4 id="options">Options</h4>
+
+<p>An extension may receive options at attachment time. Options provide a means for declaring environment specific configuration data to the extension. </p>
+
+<p><strong>Note</strong>: Options are not resolved so they SHOULD NOT include references.</p>
+
+<h4 id="resolution-rules">Resolution Rules</h4>
+
+<ul>
+<li>A file path is resolved relative to the specifying containers home directory</li>
+<li>A module or file path that points at a CommonJS package will use the main file or index.js as the extension entry point</li>
+</ul>
+
+<p>For complete detailed information check out the <a href="http://nodejs.org/api/modules.html">nodejs docs</a> </p>
+
+<h4 id="visibility-rules">Visibility Rules</h4>
+
+<ul>
+<li>If the extension is loaded by the agent then the agent and all applications can use the extensions plugins. </li>
+<li>If the extension is declared by the app then only the app can use the extension&rsquo;s plugins.</li>
+<li>If the extension is declared by both the app and the agent the app will use the plugins provided by the extension declared by the app.</li>
+</ul>
+
+<h2 id="implementation">Implementation</h2>
+
+<ul>
+<li>An Extension MUST declare a name</li>
+<li>An Extension SHOULD declare a version</li>
+<li>An Extension MAY declare a description</li>
+<li>An Extension MAY declare a provider</li>
+<li>An Extension MUST be either and object of a function that produces an object</li>
+<li>An Extension MUST expose a method named attach that takes a call callback</li>
+</ul>
+
+<h4 id="prototypical-extension">Prototypical Extension</h4>
+<pre class="highlight plaintext"><code>module.exports = {
+
+    name    : 'my-extension',
+    version : 'major.minor.patch',
+    provider: 'my organization',
+
+    attach: function(options, callback){
+        }   
+}
+</code></pre>
+
+<h4 id="prototypical-extension-module">Prototypical Extension Module</h4>
+<pre class="highlight plaintext"><code>module.extension = function(){
+        'use strict';
+    return {
+        ... prototypical extension
+    }
+}
+</code></pre>
+
+<h4 id="binding-mechanism">Binding Mechanism</h4>
+
+<p>The attach method adds plugins to a particular container</p>
+
+<h4 id="attach-signature">Attach Signature</h4>
+<pre class="highlight plaintext"><code>attach(options, function(err))
+</code></pre>
+
+<table><thead>
+<tr>
+<th>argument</th>
+<th>type</th>
+<th>required</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>options</td>
+<td>object</td>
+<td>optional</td>
+<td>provides the env specific configurations</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>required</td>
+<td>provides a way of returning an runtime error to the container</td>
+</tr>
+</tbody></table>
+
+<p>Callback takes the form of cb(err). The callback MUST be called.</p>
+
+<h4 id="context">Context</h4>
+
+<p>The value of <code class="prettyprint">this</code> provides the mechanism for adding plugins to the container. <code class="prettyprint">this</code> provides the following binding method:</p>
+<pre class="highlight plaintext"><code>this.registerPlugin(namespace, plugin)
+</code></pre>
+
+<table><thead>
+<tr>
+<th>argument</th>
+<th>type</th>
+<th>required</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>namespace</td>
+<td>string, array</td>
+<td>required</td>
+<td>unique naming</td>
+</tr>
+<tr>
+<td>plugin</td>
+<td>object or function</td>
+<td>required</td>
+<td>provides a way of returning an runtime error to the container</td>
+</tr>
+</tbody></table>
+
+<h4 id="prototypical-attachment">Prototypical Attachment</h4>
+<pre class="highlight plaintext"><code>   attach: function(options, callback){
+    var container = this;
+    try{
+             container.registerPlugin(namespace, object)
+             container.registerPlugin([ns, ns, ns], object)
+             callback &amp;&amp; callback()
+    } catch (err){
+         callback &amp;&amp; callback(err)
+    }
+   }    
+</code></pre>
+
+          <h2 id="agent-console">Agent Console</h2>
+<pre class="highlight plaintext"><code>$&gt; agent-cli console
+</code></pre>
+
+<h2 id="configuration-commands">Configuration Commands</h2>
+
+<h4 id="reset">reset</h4>
+
+<p>A reset command is used to reset the agent&rsquo;s state.</p>
+<pre class="highlight plaintext"><code>$&gt; agent-cli reset
+</code></pre>
+
+<table><thead>
+<tr>
+<th>long</th>
+<th>short</th>
+<th>arg</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&ndash;home</td>
+<td>-h</td>
+<td>path</td>
+<td>specifies the agent&rsquo;s working directory</td>
+</tr>
+<tr>
+<td>&ndash;HARD</td>
+<td>-H</td>
+<td>path</td>
+<td>destroy all state</td>
+</tr>
+</tbody></table>
+
+<h4 id="revoke">revoke</h4>
+<pre class="highlight plaintext"><code>$&gt; agent-cli revoke
+</code></pre>
+
+<p>A revoke command will revoke the agent&rsquo;s access token but leave all other agent data intact.</p>
+
+          
+          
+          
+          <h1 id="mobile-api">Mobile API</h1>
+
+<p>Mobile Container API</p>
+
+<p>The Mobile API provides application developers access to native device features for use in web applications. These features are typically unavailable in the HTML5 specification, not uniformly supported across all mobile browsers or improve on the orginal HTML5 spec. In some cases new features have been added that combine several device characteristics into one, for example bar code scanning uses camera storage and image recognition.</p>
+
+<p>There is only one API required to deliver applications on Android, iOs or Windows phones.</p>
+
+          <h2 id="kernel-promise">Kernel Promise</h2>
+
+<p>Virtually all functions in modules return instance of RBCPromise object.<br>
+With it you can easy add success and finished callbacks for the function.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">then</code> function</li>
+<li><code class="prettyprint">fail</code> function</li>
+<li><code class="prettyprint">success</code> function</li>
+</ul>
+
+<h3 id="here-is-video">Here is Video</h3>
+
+<iframe src="https://www.youtube.com/embed/PhAZn_eW9KQ" frameborder="0" allowfullscreen></iframe>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="then">then</h4>
+<pre class="highlight javascript"><code><span class="nx">someModule</span><span class="p">.</span><span class="nx">someFunction</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Function complete"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">RBCPromise.then( succesCallback, errorCallback )</code></p>
+
+<h6 id="discussion">Discussion</h6>
+
+<p>Add success (<code class="prettyprint">succesCallback</code>) and error (<code class="prettyprint">errorCallback</code>) callbacks to the
+callback&rsquo;s list associated for the function.<br>
+When function will receive the results from application this callbacks will be
+called.</p>
+
+<h6 id="arguments">Arguments</h6>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code>  required</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h6 id="return-value">Return Value</h6>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h4 id="fail">fail</h4>
+<pre class="highlight javascript"><code><span class="nx">someModule</span><span class="p">.</span><span class="nx">someFunction</span><span class="p">().</span><span class="nx">fail</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">RBCPromise.fail( errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Add <code class="prettyprint">errorCallback</code> to the callback&rsquo;s list associated for the function.<br>
+If function will receive error results from application this callback will be
+called.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> required</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h4 id="success">success</h4>
+<pre class="highlight javascript"><code><span class="nx">someModule</span><span class="p">.</span><span class="nx">someFunction</span><span class="p">().</span><span class="nx">success</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Function complete"</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">RBCPromise.success( succesCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Add <code class="prettyprint">succesCallback</code> to the callback&rsquo;s list associated for the function.<br>
+If function will receive success results from application this callbacks will
+be called.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> required</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+          <h2 id="kernel-events">Kernel Events</h2>
+
+<p>The Kernel support handling events from native application.<br>
+Developer can <a href="#addeventlistener">add</a> or
+<a href="#removeeventlistener">remove</a> listener callbacks for the event.<br>
+Events usually used module_name.module_event scheme for naming.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">addEventListener</code> function</li>
+<li><code class="prettyprint">removeEventListener</code> function</li>
+</ul>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="addeventlistener">addEventListener</h4>
+<pre class="highlight javascript"><code><span class="nx">events</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"module_name.module_event"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">eventInfo</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Received event with info: "</span> <span class="o">+</span> <span class="nx">eventInfo</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">events.addEventListener( eventName, callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Register <code class="prettyprint">callback</code> for <code class="prettyprint">eventName</code></p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">eventName</code> required</li>
+</ul>
+
+<p>Event name. Usually used scheme module_name.module_event. For example
+device.pause</p>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<p>Callback. Function which will be called when kernel receive event from
+application.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h4 id="removeeventlistener">removeEventListener</h4>
+<pre class="highlight javascript"><code><span class="nx">events</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s2">"module_name.module_event"</span><span class="p">);</span>
+</code></pre>
+
+<p><code class="prettyprint">events.removeEventListener( eventName, callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Unregister <code class="prettyprint">callback</code> for <code class="prettyprint">eventName</code></p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">eventName</code> required</li>
+</ul>
+
+<p>Event name. Usually used scheme module_name.module_event. For example
+device.pause</p>
+
+<ul>
+<li><code class="prettyprint">callback</code> optional</li>
+</ul>
+
+<p>Callback. Function which will be called when kernel receive event from application.</p>
+
+<p>If not selected or <code class="prettyprint">null</code> will be removed all callbacks for specified event</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+          <h2 id="kernel-errors">Kernel Errors</h2>
+
+<p>Contains error codes which returned in parameters in errorCallback</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">RBCErrors.Unknown</code> constant</li>
+<li><code class="prettyprint">RBCErrors.ModuleNotSupported</code> constant</li>
+<li><code class="prettyprint">RBCErrors.FunctionNotSupported</code> constant</li>
+<li><code class="prettyprint">RBCErrors.PermissionDenied</code> constant</li>
+<li><code class="prettyprint">RBCErrors.WrongParameters</code> constant</li>
+<li><code class="prettyprint">RBCErrors.Timeout</code> constant</li>
+<li><code class="prettyprint">RBCErrors.Formatting</code> constant</li>
+<li><code class="prettyprint">RBCErrors.Parsing</code> constant</li>
+<li><code class="prettyprint">RBCErrors.CancelledByUser</code> constant</li>
+<li><code class="prettyprint">RBCErrors.NotFound</code> constant</li>
+<li><code class="prettyprint">RBCErrors.Internal</code> constant</li>
+</ul>
+
+<h3 id="constants">Constants</h3>
+
+<h4 id="rbcerrors.unknown">RBCErrors.Unknown</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if unknown error occurred.</p>
+
+<h4 id="rbcerrors.modulenotsupported">RBCErrors.ModuleNotSupported</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if application does not support module. It can
+happen if used old version of application.</p>
+
+<h4 id="rbcerrors.functionnotsupported">RBCErrors.FunctionNotSupported</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if application does not support module function.
+It can happen if used old version of application or device can not support
+this function.</p>
+
+<h4 id="rbcerrors.permissiondenied">RBCErrors.PermissionDenied</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if application does not have permissions to
+access to required feature. For example user can reject access to photos or
+location on iOS.</p>
+
+<h4 id="rbcerrors.wrongparameters">RBCErrors.WrongParameters</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if function&rsquo;s input parameters is wrong or
+insufficient.</p>
+
+<h4 id="rbcerrors.timeout">RBCErrors.Timeout</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if the timeout expired before the results.</p>
+
+<h4 id="rbcerrors.formatting">RBCErrors.Formatting</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if formatting of input parameters is wrong.</p>
+
+<h4 id="rbcerrors.parsing">RBCErrors.Parsing</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if function can not parse input parameters.</p>
+
+<h4 id="rbcerrors.cancelledbyuser">RBCErrors.CancelledByUser</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if action was cancelled by user. For example
+user pressed close button instead selecting photo from library.</p>
+
+<h4 id="rbcerrors.notfound">RBCErrors.NotFound</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if requested object not found.</p>
+
+<h4 id="rbcerrors.internal">RBCErrors.Internal</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Error with this code returned if some internal method returned error.</p>
+
+          <h2 id="app-storage-module">App Storage Module</h2>
+
+<p>This module provides the ability to store any kind of data.<br>
+Developer can add data or strings manually or load files from server.<br>
+Also some modules are supporting to work with <strong>App Storage</strong>. For example
+developer can save photo to <strong>App Storage</strong> and then send it as attachment via
+email.<br>
+This is simple key-value storage. But value can be a string, a binary data and
+a file. The length of value limited only by the size of free memory.</p>
+
+<p>All keys which saved to <strong>App Storage</strong> are bound to the active user. For example, if you create the key &ldquo;test1&rdquo; with some data under the first user, different user can not read or replace this key.</p>
+
+<p><strong>App Storage</strong> contains two separate storages with different types:</p>
+
+<ul>
+<li><p><em>Private App Storage</em> (This is default storage)</p>
+
+<p>The keys in the private storage are bound to the active application. Different application doesn&rsquo;t have access to this keys.</p>
+
+<p>To work with this storage developer can use <code class="prettyprint">appStorage</code> object.</p></li>
+<li><p><em>Shared App Storage</em></p>
+
+<p>All applications have access to this storage. If <em>application1</em> creates the key, <em>application2</em> can read/replace/delete this key.</p>
+
+<p>To work with shared storage developer can use <code class="prettyprint">appStorage.shared</code> object.</p></li>
+</ul>
+
+<p>All methods except <code class="prettyprint">deleteAll</code> available at both objects.</p>
+
+<h3 id="key-naming-convention">Key naming convention</h3>
+
+<ol>
+<li>Use a delimiter &ldquo;/&rdquo; for separating logic parts of keys.</li>
+<li>All modules that store data in <strong>App Storage</strong> use the keys: module_name/generated_id</li>
+<li>In order not to damage the data of other embedded applications use keys with prefix app/[your_app_name]</li>
+</ol>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">put</code> function</li>
+<li><code class="prettyprint">getAllKeys</code> function</li>
+<li><code class="prettyprint">get</code> function</li>
+<li><code class="prettyprint">delete</code> function</li>
+<li><code class="prettyprint">deleteAll</code> function</li>
+<li><code class="prettyprint">putString</code> function</li>
+<li><code class="prettyprint">getString</code> function</li>
+<li><code class="prettyprint">getStrings</code> function</li>
+<li><code class="prettyprint">putContent</code> function</li>
+<li><code class="prettyprint">loadContent</code> function</li>
+<li><code class="prettyprint">getContent</code> function</li>
+</ul>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="put">put</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span> <span class="p">{</span><span class="na">key</span><span class="p">:</span><span class="s2">"app/test/key1"</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span><span class="s2">"Test values"</span><span class="p">}</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">"saved"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.put( options, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.put( options, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>With this function developer can save strings, data or file for the key.<br>
+Developer can use this function in three cases:</p>
+
+<ol>
+<li><strong>Save string data</strong>
+For it developer must set key and value properties for <code class="prettyprint">options</code></li>
+<li><strong>Save binary data</strong>
+For it developer must set key, contentType and data properties for <code class="prettyprint">options</code></li>
+<li><strong>Load data from server</strong>
+For it developer must set key, url and contentType (optional) properties for
+<code class="prettyprint">options</code></li>
+</ol>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">key</code>required</p>
+
+<p>A String value. The key under which data will be stored.</p>
+
+<p>* <code class="prettyprint">value</code></p>
+
+<p>A String value. String data to save.</p>
+
+<p>* <code class="prettyprint">contentType</code></p>
+
+<p>A String value. Content Type of data.</p>
+
+<p>* <code class="prettyprint">data</code></p>
+
+<p>A String value. String data in base64 to save.</p>
+
+<p>* <code class="prettyprint">url</code></p>
+
+<p>A String value. Link to the file on remote server.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains keys:</p>
+
+<p>* <code class="prettyprint">key</code> - The key in accordance with which the data was saved. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="getallkeys">getAllKeys</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">getAllKeys</span><span class="p">(</span> <span class="p">{</span><span class="na">prefix</span><span class="p">:</span><span class="s2">"app/test/"</span><span class="p">}</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">info</span><span class="p">.</span><span class="nx">keys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"Key: "</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">keys</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">key</span><span class="p">);</span>  
+    <span class="p">}</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">appStorage.getAllKeys( options, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Returns all keys which respond to options.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">prefix</code></p>
+
+<p>A String value. The key must contains prefix in the start of string.</p>
+
+<p>* <code class="prettyprint">contentType</code></p>
+
+<p>A String value. Content Type of data must be equal to this.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains &ldquo;keys&rdquo; array with objects with:</p>
+
+<p>* <code class="prettyprint">key</code> - The key of record. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code>optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="get">get</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span> <span class="p">{</span><span class="na">key</span><span class="p">:</span><span class="s2">"app/test/key1"</span><span class="p">}</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"Found data for key: "</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">key</span><span class="p">);</span>  
+    <span class="p">}</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.get( options, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.get( options, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Return value or data in base64 for specified keys</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">key</code></p>
+
+<p>A String value. The key for which you want to find a record.</p>
+
+<p>* <code class="prettyprint">keys</code></p>
+
+<p>A Array of Strings value. Use this property to select multiple records.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains &ldquo;values&rdquo; array with objects with:</p>
+
+<p>* <code class="prettyprint">key</code> - The key of record. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<p>* <code class="prettyprint">value</code> - This property returned if record contains string value. (String)</p>
+
+<p>* <code class="prettyprint">data</code> - data in base64 returned if record contains binary data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="delete">delete</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span> <span class="p">{</span><span class="na">key</span><span class="p">:</span><span class="s2">"app/test/key1"</span><span class="p">}</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Key removed"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.delete( options, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.delete( options, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Delete records for specified keys</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">key</code></p>
+
+<p>A String value. Delete records with key.</p>
+
+<p>* <code class="prettyprint">keys</code></p>
+
+<p>A Array of Strings value. Use this property to delete multiple records.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is always null.</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="deleteall">deleteAll</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">deleteAll</span><span class="p">(</span> <span class="p">{</span><span class="na">prefix</span><span class="p">:</span><span class="s2">"app/test/"</span><span class="p">}</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"All keys removed"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.deleteAll( options, successCallback, errorCallback )</code></li>
+<li>Shared
+<em>Not supported</em></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Delete all keys which respond to options.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">prefix</code></p>
+
+<p>A String value. The key must contains prefix in the start of string.</p>
+
+<p>* <code class="prettyprint">contentType</code></p>
+
+<p>A String value. Content Type of data must be equal to this.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is always null.</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="putstring">putString</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">putString</span><span class="p">(</span> <span class="s2">"app/test/key1"</span><span class="p">,</span> <span class="s2">"Test values"</span><span class="p">,</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">"saved"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.putString( key, value, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.putString( key, value, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This function use put to add string value.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">key</code> required</li>
+</ul>
+
+<p>A String value. The key under which string value will be stored.</p>
+
+<ul>
+<li><code class="prettyprint">value</code> required</li>
+</ul>
+
+<p>A String value. String data to save.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains keys:</p>
+
+<p>* <code class="prettyprint">key</code> - The key in accordance with which the data was saved. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="getstring">getString</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">getString</span><span class="p">(</span> <span class="s2">"app/test/key1"</span><span class="p">,</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"Found data for key: "</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">key</span><span class="p">);</span>  
+    <span class="p">}</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.getString( key, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.getString( key, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This function use get to get string value.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">key</code> required</li>
+</ul>
+
+<p>A String value. The key for which you want to find a record.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains &ldquo;values&rdquo; array with objects with:</p>
+
+<p>* <code class="prettyprint">key</code> - The key of record. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<p>* <code class="prettyprint">value</code> - This property returned if record contains string value. (String)</p>
+
+<p>* <code class="prettyprint">data</code> - data in base64 returned if record contains binary data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="getstrings">getStrings</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">getStrings</span><span class="p">(</span> <span class="p">[</span><span class="s2">"app/test/key1"</span><span class="p">,</span> <span class="s2">"app/test/key2"</span><span class="p">],</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"Found data for key: "</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">key</span><span class="p">);</span>  
+    <span class="p">}</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.getStrings( keys, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.getStrings( keys, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This function use get to get multiple string values.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">keys</code> required</li>
+</ul>
+
+<p>A Array of Strings value. Use this property to select multiple records.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains &ldquo;values&rdquo; array with objects with:</p>
+
+<p>* <code class="prettyprint">key</code> - The key of record. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<p>* <code class="prettyprint">value</code> - This property returned if record contains string value. (String)</p>
+
+<p>* <code class="prettyprint">data</code> - data in base64 returned if record contains binary data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="putcontent">putContent</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">putContent</span><span class="p">(</span> <span class="s2">"app/test/key2"</span><span class="p">,</span> <span class="s2">"text/plain"</span><span class="p">,</span> <span class="s2">"VGVzdA=="</span><span class="p">,</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">"saved"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.putContent( key, contentType, data, successCallback, errorCallback)</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.putContent( key, contentType, data, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This function use put to add binary data.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">key</code> required</li>
+</ul>
+
+<p>A String value. The key under which data will be stored.</p>
+
+<ul>
+<li><code class="prettyprint">contentType</code> required</li>
+</ul>
+
+<p>A String value. Content Type of data.</p>
+
+<ul>
+<li><code class="prettyprint">data</code> required</li>
+</ul>
+
+<p>A String value. String data in base64 to save.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains keys:</p>
+
+<p>* <code class="prettyprint">key</code> - The key in accordance with which the data was saved. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="loadcontent">loadContent</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">loadContent</span><span class="p">(</span> <span class="s2">"app/test/key3"</span><span class="p">,</span> <span class="s2">"http://www.company.com/file_url"</span><span class="p">,</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">key</span> <span class="o">+</span> <span class="s2">"saved"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.loadContent( key, url, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.loadContent( key, url, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This function use put to load data from remote server.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">key</code> required</li>
+</ul>
+
+<p>A String value. The key under which data will be stored.</p>
+
+<ul>
+<li><code class="prettyprint">url</code> required</li>
+</ul>
+
+<p>A String value. Link to the file on remote server.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains keys:</p>
+
+<p>* <code class="prettyprint">key</code> - The key in accordance with which the data was saved. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="getcontent">getContent</h4>
+<pre class="highlight javascript"><code><span class="nx">appStorage</span><span class="p">.</span><span class="nx">getContent</span><span class="p">(</span> <span class="s2">"app/test/key3"</span><span class="p">,</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"Found data for key: "</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">key</span><span class="p">);</span>  
+    <span class="p">}</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<ul>
+<li>Private
+<code class="prettyprint">appStorage.getContent( key, successCallback, errorCallback )</code></li>
+<li>Shared
+<code class="prettyprint">appStorage.shared.getContent( key, successCallback, errorCallback )</code></li>
+</ul>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This function use get to get binary data in base64.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">key</code> required</li>
+</ul>
+
+<p>A String value. The key for which you want to find a record.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains &ldquo;values&rdquo; array with objects with:</p>
+
+<p>* <code class="prettyprint">key</code> - The key of record. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<p>* <code class="prettyprint">value</code> - This property returned if record contains string value. (String)</p>
+
+<p>* <code class="prettyprint">data</code> - data in base64 returned if record contains binary data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+          <h2 id="archiving-module">Archiving Module</h2>
+
+<p>This module provides the ability to working with zip archives.</p>
+
+<p>Developer can create new zip archive with files from <a href="#app-storage-module">App Storage</a>
+and extract files from zip archive (which saved in <a href="#app-storage-module">App Storage</a>).</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">zip</code> function</li>
+<li><code class="prettyprint">unzip</code> function</li>
+</ul>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="zip">zip</h4>
+<pre class="highlight javascript"><code><span class="nx">archiving</span><span class="p">.</span><span class="nx">zip</span><span class="p">(</span> <span class="p">{</span><span class="na">archive</span><span class="p">:</span><span class="s2">"zip1_key"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span><span class="s2">"12345"</span><span class="p">,</span> <span class="na">files</span><span class="p">:[{</span><span class="na">key</span><span class="p">:</span><span class="s2">"image1"</span><span class="p">,</span>
+<span class="na">name</span><span class="p">:</span><span class="s2">"image.jpg"</span><span class="p">}]},</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Zip Archive created"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">archiving.zip( options, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Create new zip archive with files from <a href="#app-storage-module">App Storage</a>.</p>
+
+<p>Developer can create archive with selected files (options must contains
+<code class="prettyprint">files</code> key) or can add all files in <a href="#app-storage-module">App Storage</a> with keys which
+contains prefix in the start (options must contains <code class="prettyprint">filesWithPrefix</code> key).</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">archive</code></p>
+
+<p>A String value. The key must contains zip archive name (The key in <a href="#app-storage-module">App
+Storage</a>).</p>
+
+<p>* <code class="prettyprint">password</code></p>
+
+<p>A String value. The key can contains password for zip archive.</p>
+
+<p>* <code class="prettyprint">files</code></p>
+
+<p>An Array of Objects. The key can contains the list of files which will be
+added to zip archive.</p>
+
+<p>Each item must contains 2 properties:</p>
+
+<p>* <code class="prettyprint">key</code> - the key in <a href="#app-storage-module">App Storage</a> which contains file. (String)</p>
+
+<p>* <code class="prettyprint">name</code> - the name of file in zip archive. (String)</p>
+
+<p>Can contains full path with folders e.g. &ldquo;foder1/file1.txt&rdquo;</p>
+
+<p>* <code class="prettyprint">filesWithPrefix</code></p>
+
+<p>A String value. All files in <a href="#app-storage-module">App Storage</a> with keys which
+contains prefix in the start of string will be added to zip archive.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is always null.</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="unzip">unzip</h4>
+<pre class="highlight javascript"><code><span class="nx">archiving</span><span class="p">.</span><span class="nx">unzip</span><span class="p">(</span> <span class="p">{</span><span class="na">archive</span><span class="p">:</span><span class="s2">"zip1_key"</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span><span class="s2">"12345"</span><span class="p">,</span> <span class="na">prefix</span><span class="p">:</span><span class="s2">"zip1_files"</span><span class="p">},</span>  
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Files unzipped: "</span><span class="o">+</span><span class="nx">info</span><span class="p">.</span><span class="nx">keys</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">archiving.unzip( options, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Extract files from zip archive to <a href="#app-storage-module">App Storage</a>.</p>
+
+<p>If <code class="prettyprint">prefix</code> key in <code class="prettyprint">options</code> exist all keys for extracted files will started
+from prefix.</p>
+
+<p>For example zip file contains 2 files:</p>
+
+<ol>
+<li>file1.txt</li>
+<li><p>folder1/file1.txt
+After unzipping will be created keys:</p></li>
+<li><p>prefix/file1.txt</p></li>
+<li><p>prefix/folder1/file1.txt</p></li>
+</ol>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">archive</code></p>
+
+<p>A String value. The key must contains zip archive name (The key in <a href="#app-storage-module">App Storage</a>).</p>
+
+<p>* <code class="prettyprint">password</code></p>
+
+<p>A String value. The key can contains password for zip archive.</p>
+
+<p>* <code class="prettyprint">prefix</code></p>
+
+<p>A String value. All keys for extracted files will started from this prefix.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains keys:</p>
+
+<p>* <code class="prettyprint">keys</code> - Contains all keys for extracted files. (Array of Strings)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+          <h2 id="authentication-module">Authentication Module</h2>
+
+<p>This module is designed to authenticate users.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">supported</code> property</li>
+<li><code class="prettyprint">username</code> property</li>
+<li><code class="prettyprint">authenticated</code> property</li>
+<li><code class="prettyprint">login</code> function</li>
+<li><code class="prettyprint">logout</code> function</li>
+<li><code class="prettyprint">getCredentialsInfo</code> function</li>
+<li><code class="prettyprint">authentication.usernameChanged</code> event</li>
+</ul>
+
+<h3 id="properties">Properties</h3>
+
+<h4 id="supported">supported</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">supported</span> <span class="o">=</span> <span class="nx">authentication</span><span class="p">.</span><span class="nx">supported</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Returns whether the device supports authentication.</p>
+
+<h4 id="username">username</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">authentication</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Returns current authenticated username or <strong>null</strong>. This property changed when
+authentication.usernameChanged event received.</p>
+
+<h4 id="authenticated">authenticated</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">isAuthenticated</span> <span class="o">=</span> <span class="nx">authentication</span><span class="p">.</span><span class="nx">authenticated</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Returns <strong>true</strong> if user already authenticated. Otherwise returns <strong>false</strong>.
+This property changed when authentication.usernameChanged event received.</p>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="login">login</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>  
+    <span class="na">username</span><span class="p">:</span> <span class="s2">"test_user"</span><span class="p">,</span>  
+    <span class="na">password</span><span class="p">:</span> <span class="s2">"password"</span><span class="p">};</span>  
+<span class="nx">authentication</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span> <span class="nx">options</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"User ("</span> <span class="err">\</span><span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">username</span> <span class="o">+</span> <span class="s2">") authenticated."</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Login failed! code: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">authentication.login( options, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Tries to login to server with user credentials.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">username</code></p>
+
+<p>A String value. The key must contains string with username.</p>
+
+<p>* <code class="prettyprint">password</code></p>
+
+<p>A String value. The key must contains string with user password.</p>
+
+<p>* <code class="prettyprint">remember</code></p>
+
+<p>A Boolean value. If <strong>true</strong> credentials will be saved and will be used after
+application restart.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>* <code class="prettyprint">username</code> - Authorized username. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="logout">logout</h4>
+<pre class="highlight javascript"><code><span class="nx">authentication</span><span class="p">.</span><span class="nx">logout</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Finished."</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Logout failed! code: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">authentication.logout( successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Logout current authorized user and clear all session cookies.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is always <strong>null</strong>.</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="getcredentialsinfo">getCredentialsInfo</h4>
+<pre class="highlight javascript"><code><span class="nx">authentication</span><span class="p">.</span><span class="nx">getCredentialsInfo</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Last username = "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">username</span> <span class="o">+</span> <span class="s2">"\n"</span><span class="o">+</span>  
+         <span class="s2">"Last remember"</span> <span class="err">\</span><span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">remember</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Failed! code: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">authentication.getCredentialsInfo( successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Gets username and remember flag which used in last successful call of login
+method.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>* <code class="prettyprint">username</code> - Username which was used in last login. (String)
+    * <code class="prettyprint">remember</code> - Last used remember flag state. (Boolean)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h3 id="events">Events</h3>
+
+<h4 id="authentication.usernamechanged">authentication.usernameChanged</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when current authentication status changed.</p>
+
+<h5 id="callback-arguments">Callback Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">username</code> - Current authenticated username or <strong>null</strong>. (String)</li>
+</ul>
+
+          <h2 id="bar-code-module">Bar Code Module</h2>
+
+<p>This module provides the ability to scanning barcodes.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">barcode.TYPES</code> constant</li>
+<li><code class="prettyprint">scan</code> function</li>
+</ul>
+
+<h3 id="constants">Constants</h3>
+
+<h4 id="barcode.types">barcode.TYPES</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This enum contains variants of supported bar- or qr- codes.</p>
+
+<ul>
+<li><code class="prettyprint">barcode.TYPES.QRCODE</code></li>
+</ul>
+
+<p>Will be recognized only QR codes.</p>
+
+<ul>
+<li><code class="prettyprint">barcode.TYPES.BARCODE</code></li>
+</ul>
+
+<p>Will be recognized only Bar Codes.</p>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="scan">scan</h4>
+<pre class="highlight javascript"><code><span class="nx">barcode</span><span class="p">.</span><span class="nx">scan</span><span class="p">(</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span><span class="nx">barcode</span><span class="p">.</span><span class="nx">TYPES</span><span class="p">.</span><span class="nx">QRCODE</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"QR Code recognized: "</span><span class="o">+</span><span class="nx">info</span><span class="p">.</span><span class="nx">code</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="err">\</span><span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">barcode.scan( options, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Recognize bar- or qr- codes.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">options</code> required</li>
+</ul>
+
+<p>Object with key-value. Supported keys:</p>
+
+<p>* <code class="prettyprint">type</code></p>
+
+<p>See TYPES constants. Chooses supported codes. If not selected recorgnize all
+supported codes.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>* <code class="prettyprint">code</code> - Recognized bar- or qr- code. (String)</p>
+
+<p>* <code class="prettyprint">image</code> - Optional image with recognized bar- or qr- code. Working only on iOS. </p>
+
+<p>* <code class="prettyprint">data</code> - Image data in base64 format. (String)</p>
+
+<p>* <code class="prettyprint">contentType</code> - Content Type of the data. (String)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+          <h2 id="battery-module">Battery Module</h2>
+
+<p>Getting information about battery level and plugged for charger state.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">level</code> property</li>
+<li><code class="prettyprint">isPlugged</code> property</li>
+<li><code class="prettyprint">levelChanged</code> function</li>
+<li><code class="prettyprint">pluggedChanged</code> function</li>
+<li><code class="prettyprint">low</code> function</li>
+<li><code class="prettyprint">critical</code> function</li>
+<li><code class="prettyprint">battery.level</code> event</li>
+<li><code class="prettyprint">battery.plugged</code> event</li>
+<li><code class="prettyprint">battery.low</code> event</li>
+<li><code class="prettyprint">battery.critical</code> event</li>
+</ul>
+
+<h3 id="properties">Properties</h3>
+
+<h4 id="level">level</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">level</span> <span class="o">=</span> <span class="nx">battery</span><span class="p">.</span><span class="nx">level</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Current battery level.</p>
+
+<aside class="notice">
+On iOS devices with os version < 8.0 battery level divisible by 5
+</aside>
+
+<h4 id="isplugged">isPlugged</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">plugged</span> <span class="o">=</span> <span class="nx">battery</span><span class="p">.</span><span class="nx">isPlugged</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Is device plugged for charger</p>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="levelchanged">levelChanged</h4>
+<pre class="highlight javascript"><code><span class="nx">battery</span><span class="p">.</span><span class="nx">levelChanged</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Battery level changed. Current level: "</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">battery.levelChanged( callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Register <code class="prettyprint">callback</code> as observer for <a href="#battery.level"><code class="prettyprint">battery.level</code></a> event.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h4 id="pluggedchanged">pluggedChanged</h4>
+<pre class="highlight javascript"><code><span class="nx">battery</span><span class="p">.</span><span class="nx">pluggedChanged</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">isPlugged</span> <span class="p">?</span> <span class="s2">"Device plugged"</span> <span class="p">:</span> <span class="s2">"Device unplugged"</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">battery.pluggedChanged( callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Register <code class="prettyprint">callback</code> as observer for <a href="#battery.plugged"><code class="prettyprint">battery.plugged</code></a> event.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code><br></li>
+</ul>
+
+<h4 id="low">low</h4>
+<pre class="highlight javascript"><code><span class="nx">battery</span><span class="p">.</span><span class="nx">low</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Battery low!"</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">battery.low( callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Register <code class="prettyprint">callback</code> as observer for <a href="#battery.low"><code class="prettyprint">battery.low</code></a> event.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code><br></li>
+</ul>
+
+<h4 id="critical">critical</h4>
+<pre class="highlight javascript"><code><span class="nx">battery</span><span class="p">.</span><span class="nx">critical</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Battery critical low!"</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">battery.critical( callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Register <code class="prettyprint">callback</code> as observer for <a href="#battery.critical"><code class="prettyprint">battery.critical</code></a> event.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h3 id="events">Events</h3>
+
+<h4 id="battery.level"><code class="prettyprint">battery.level</code></h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when changed battery level</p>
+
+<h4 id="battery.plugged"><code class="prettyprint">battery.plugged</code></h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when device plugged or unplugged from charger</p>
+
+<h4 id="battery.low"><code class="prettyprint">battery.low</code></h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when device unplugged from charger and battery level less then
+20%</p>
+
+<h4 id="battery.critical"><code class="prettyprint">battery.critical</code></h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when device unplugged from charger and battery level less then
+5%</p>
+
+          <h2 id="device-module">Device Module</h2>
+
+<p>Getting basic information about device.<br>
+Also provides events about application state.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">device.TYPES</code> constant</li>
+<li><code class="prettyprint">model</code> property</li>
+<li><code class="prettyprint">platform</code> property</li>
+<li><code class="prettyprint">guid</code> property</li>
+<li><code class="prettyprint">osVersion</code> property</li>
+<li><code class="prettyprint">name</code> property</li>
+<li><code class="prettyprint">type</code> property</li>
+<li><code class="prettyprint">ready</code> function</li>
+<li><code class="prettyprint">pause</code> function</li>
+<li><code class="prettyprint">resume</code> function</li>
+<li><code class="prettyprint">device.pause</code> event</li>
+<li><code class="prettyprint">device.resume</code> event</li>
+</ul>
+
+<h3 id="constants">Constants</h3>
+
+<h4 id="device.types">device.TYPES</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>The enum contains variants of device types.</p>
+
+<ul>
+<li><p><code class="prettyprint">device.TYPES.PHONE</code></p>
+
+<p>Device is a phone.</p></li>
+<li><p><code class="prettyprint">device.TYPES.TABLET</code></p>
+
+<p>Device is a tablet.</p></li>
+</ul>
+
+<h3 id="properties">Properties</h3>
+
+<h4 id="model">model</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">deviceModel</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">model</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Device model. For example iPhone6,1 or iPhone6,2 for iPhone 5s</p>
+
+<h4 id="platform">platform</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">devicePlatform</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">platform</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Device Platform. Supported values:</p>
+
+<ul>
+<li>iOS</li>
+<li>Android</li>
+<li>WP</li>
+</ul>
+
+<h4 id="guid">guid</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">deviceId</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">guid</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Device identifier</p>
+
+<h4 id="osversion">osVersion</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">osVersion</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">osVersion</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Device OS version</p>
+
+<h4 id="name">name</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">deviceName</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Device Name</p>
+
+<h4 id="type">type</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">deviceType</span> <span class="o">=</span> <span class="nx">device</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Device Type. See device.TYPES for more info.</p>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="ready">ready</h4>
+<pre class="highlight javascript"><code><span class="nx">device</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Initializtion complete"</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">device.ready( callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Add <em>callback</em> which will be called after full JavaScript kernel and modules
+initialization.<br>
+If call this function after initialization end <em>callback</em> will be called
+immediately.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<p>Callback which execute after JavaScript kernel initialization.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h4 id="pause">pause</h4>
+<pre class="highlight javascript"><code><span class="nx">device</span><span class="p">.</span><span class="nx">pause</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Application will enter to background"</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">device.pause( callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Register <em>callback</em> as observer for device.pause event.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<p>Callback which execute when application enter to background.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h4 id="resume">resume</h4>
+<pre class="highlight javascript"><code><span class="nx">device</span><span class="p">.</span><span class="nx">resume</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Application will enter to foreground"</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">device.resume( callback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Register <em>callback</em> as observer for device.resume event.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">callback</code> required</li>
+</ul>
+
+<p>Callback which execute when application return to foreground.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><code class="prettyprint">this</code></li>
+</ul>
+
+<h3 id="events">Events</h3>
+
+<h4 id="device.pause"><code class="prettyprint">device.pause</code></h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when application enter to background</p>
+
+<h4 id="device.resume"><code class="prettyprint">device.resume</code></h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when application returned from background</p>
+
+          <h2 id="device-orientation-module">Device Orientation Module</h2>
+
+<p>Locking device orientation in specified mode.</p>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">deviceOrientation.MODE</code> constant</li>
+<li><code class="prettyprint">setOrientation</code> function</li>
+</ul>
+
+<h3 id="constants">Constants</h3>
+
+<h4 id="deviceorientation.mode"><code class="prettyprint">deviceOrientation.MODE</code></h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>The enum contains variants of supported orientation modes.<br>
+It used in setOrientation method.</p>
+
+<ul>
+<li><code class="prettyprint">deviceOrientation.MODE.AUTO</code></li>
+</ul>
+
+<p>UI support all orientations. UI will be working in portrait and landscape
+modes.</p>
+
+<ul>
+<li><code class="prettyprint">deviceOrientation.MODE.PORTRAIT</code></li>
+</ul>
+
+<p>UI support only portrait orientation. UI will be working only in portrait
+mode.</p>
+
+<ul>
+<li><code class="prettyprint">deviceOrientation.MODE.LANDSCAPE</code></li>
+</ul>
+
+<p>UI support only landscape orientation. UI will be working only in landscape
+mode.</p>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="setorientation">setOrientation</h4>
+<pre class="highlight javascript"><code><span class="nx">deviceOrientation</span><span class="p">.</span><span class="nx">setOrientation</span><span class="p">(</span> <span class="nx">deviceOrientation</span><span class="p">.</span><span class="nx">MODE</span><span class="p">.</span><span class="nx">PORTRAIT</span><span class="p">,</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Orientaion locked in portrait mode"</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"setOrientation! code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">deviceOrientation.setOrientation( orientation, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Lock UI in selected <strong>orientation</strong>.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">orientation</code> required</li>
+</ul>
+
+<p>String with required orientation mode. See <a href="#deviceorientation.mode"><code class="prettyprint">deviceOrientation.MODE</code></a> for more
+info.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is always <strong>null</strong>.</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+          <h2 id="geofencing-module">Geofencing Module</h2>
+
+<p>This module provides the support for working with geo- regions. Developer can use
+this module for monitoring regions:</p>
+
+<ul>
+<li>If application in background when device enters or exit from the geo-region user will receive predefined notifications.</li>
+<li>If application in foreground developer can receive geofencing.didEnterToRegion, geofencing.didExitFromRegion events.</li>
+</ul>
+
+<h3 id="tasks">Tasks</h3>
+
+<ul>
+<li><code class="prettyprint">notificationInfo</code> object</li>
+<li><code class="prettyprint">notificationsInfo</code> object</li>
+<li><code class="prettyprint">centerInfo</code> object</li>
+<li><code class="prettyprint">regionInfo</code> object</li>
+<li><code class="prettyprint">supported</code> property</li>
+<li><code class="prettyprint">getRegions</code> function</li>
+<li><code class="prettyprint">addRegion</code> function</li>
+<li><code class="prettyprint">checkRegion</code> function</li>
+<li><code class="prettyprint">removeRegion</code> function</li>
+<li><code class="prettyprint">removeAllRegions</code> function</li>
+<li><code class="prettyprint">getPageRegion</code> function</li>
+<li><code class="prettyprint">geofencing.didEnterToRegion</code> event</li>
+<li><code class="prettyprint">geofencing.didExitFromRegion</code> event</li>
+</ul>
+
+<h3 id="objects">Objects</h3>
+
+<h4 id="notificationinfo">notificationInfo</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This Object contains information about local notifications which displayed when application in background.
+Used in <code class="prettyprint">notificationsInfo</code> object</p>
+
+<h5 id="keys">Keys</h5>
+
+<ul>
+<li><code class="prettyprint">title</code> optional</li>
+</ul>
+
+<p>A String value. Local notification title.</p>
+
+<ul>
+<li><code class="prettyprint">message</code> optional</li>
+</ul>
+
+<p>A String value. Local notification message.</p>
+
+<ul>
+<li><code class="prettyprint">url</code> optional</li>
+</ul>
+
+<p>A String value. Link that will open after application will be opened from
+notification.</p>
+
+<h4 id="notificationsinfo">notificationsInfo</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This Object contains information about notifications that will be displayed if
+the device entered or exited from the region and application was in background.
+Used in <code class="prettyprint">regionInfo</code> object</p>
+
+<h5 id="keys">Keys</h5>
+
+<ul>
+<li><code class="prettyprint">enter</code> optional</li>
+</ul>
+
+<p>An <code class="prettyprint">notificationInfo</code> Object. Contains information about notification that will be displayed if
+the device entered to the region and application was in background.</p>
+
+<ul>
+<li><code class="prettyprint">exit</code> optional</li>
+</ul>
+
+<p>An <code class="prettyprint">notificationInfo</code> Object. Contains information about notification that will be displayed if
+the device exited from the region and application was in background.</p>
+
+<h4 id="centerinfo">centerInfo</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This Object contains contains information about center of region.
+Used in <code class="prettyprint">regionInfo</code> object</p>
+
+<h5 id="keys">Keys</h5>
+
+<ul>
+<li><code class="prettyprint">latitude</code> required</li>
+</ul>
+
+<p>A Double value. The latitude of region&rsquo;s center.</p>
+
+<ul>
+<li><code class="prettyprint">longitude</code> required</li>
+</ul>
+
+<p>A Double value. The longitude of region&rsquo;s center.</p>
+
+<h4 id="regioninfo">regionInfo</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>This Object contains information about geo- region.</p>
+
+<h5 id="keys">Keys</h5>
+
+<ul>
+<li><code class="prettyprint">id</code> optional</li>
+</ul>
+
+<p>A String value. Identifier of region. Generated by application after adding new region for monitoring.</p>
+
+<ul>
+<li><code class="prettyprint">name</code> optional</li>
+</ul>
+
+<p>A String value. The name of region. Used only to simplify user identification region.</p>
+
+<ul>
+<li><code class="prettyprint">center</code> required</li>
+</ul>
+
+<p>An <code class="prettyprint">centerInfo</code> Object. Contains information about center of region.  </p>
+
+<ul>
+<li><code class="prettyprint">radius</code> required</li>
+</ul>
+
+<p>A Double value. The circle radius of region.</p>
+
+<ul>
+<li><code class="prettyprint">notifications</code> options</li>
+</ul>
+
+<p>An <code class="prettyprint">notificationsInfo</code> Object. Contains information about notifications that will be displayed if
+the device entered or exited from the region and application was in background.</p>
+
+<h3 id="properties">Properties</h3>
+
+<h4 id="supported">supported</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">supported</span> <span class="o">=</span> <span class="nx">geofencing</span><span class="p">.</span><span class="nx">supported</span><span class="p">;</span>
+</code></pre>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Returns whether the device supports geofencing.</p>
+
+<h3 id="functions">Functions</h3>
+
+<h4 id="getregions">getRegions</h4>
+<pre class="highlight javascript"><code><span class="nx">geofencing</span><span class="p">.</span><span class="nx">getRegions</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Monitored regions count: "</span><span class="o">+</span><span class="nx">info</span><span class="p">.</span><span class="nx">regions</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">geofencing.getRegions( successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Returns a list of regions which the monitored currently.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>- <code class="prettyprint">regions</code> - The list of regionInfo objects. (Array of Object)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="addregion">addRegion</h4>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">region</span> <span class="o">=</span> <span class="p">{</span>  
+    <span class="na">name</span><span class="p">:</span> <span class="s2">"Test Region"</span><span class="p">,</span>
+    <span class="na">center</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">latitude</span><span class="p">:</span> <span class="mf">0.00000</span><span class="p">,</span>
+      <span class="na">longitude</span><span class="p">:</span> <span class="mf">0.00000</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nl">raduis</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="na">notification</span><span class="p">:</span> <span class="p">{</span>  
+      <span class="na">enter</span><span class="p">:{</span>
+          <span class="na">title</span><span class="p">:</span> <span class="s2">"Hello!"</span><span class="p">,</span>  
+          <span class="na">message</span><span class="p">:</span> <span class="s2">"You are in region"</span><span class="p">,</span>  
+          <span class="na">url</span><span class="p">:</span> <span class="s2">"http://www.google.com"</span><span class="p">}}};</span>  
+<span class="nx">geofencing</span><span class="p">.</span><span class="nx">addRegion</span><span class="p">(</span> <span class="nx">region</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Region added."</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">geofencing.addRegion( regionInfo, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Adds new region to monitoring.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">regionInfo</code> required</li>
+</ul>
+
+<p>regionInfo object. Contains information about new geo- region.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>- <code class="prettyprint">region</code> - Added regionInfo objects. (Object)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="checkregion">checkRegion</h4>
+<pre class="highlight javascript"><code><span class="nx">geofencing</span><span class="p">.</span><span class="nx">checkRegion</span><span class="p">(</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="s2">"b614b5eb-80fa-433b-ba25-dfadc540811a"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">if</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">inside</span><span class="p">)</span>  
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"You are inside."</span><span class="p">);</span>  
+    <span class="k">else</span>  
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">"You are outside."</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">geofencing.checkRegion( regionInfo, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Checks whether the device is within the region with regionInfo.id identifier.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">regionInfo</code> required</li>
+</ul>
+
+<p>regionInfo object. Used only id property.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>- <code class="prettyprint">region</code> - Checked regionInfo objects. (Object)</p>
+
+<p>- <code class="prettyprint">inside</code> - <em>true</em> if the device is inside the region. Otherwise <em>false</em>. (Boolean)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="removeregion">removeRegion</h4>
+<pre class="highlight javascript"><code><span class="nx">geofencing</span><span class="p">.</span><span class="nx">removeRegion</span><span class="p">(</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="s2">"b614b5eb-80fa-433b-ba25-dfadc540811a"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span>
+<span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"Region removed."</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">geofencing.removeRegion( regionInfo, successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Removes the region with regionInfo.id identifier from monitoring.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">regionInfo</code> required</li>
+</ul>
+
+<p>regionInfo object. Used only id property.</p>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>- <code class="prettyprint">region</code> - Removed regionInfo objects. (Object)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="removeallregions">removeAllRegions</h4>
+<pre class="highlight javascript"><code><span class="nx">geofencing</span><span class="p">.</span><span class="nx">removeAllRegions</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"All regions removed."</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">geofencing.removeAllRegions( successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Removes all regions from monitoring.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is always null</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h4 id="getpageregion">getPageRegion</h4>
+<pre class="highlight javascript"><code><span class="nx">geofencing</span><span class="p">.</span><span class="nx">getPageRegion</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">info</span><span class="p">)</span> <span class="p">{</span>  
+  <span class="k">if</span> <span class="p">(</span><span class="nx">info</span><span class="p">.</span><span class="nx">region</span><span class="p">)</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="s2">"The page opened from notification."</span><span class="p">);</span>  
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">"code: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">code</span> <span class="o">+</span> <span class="s2">"\nmessage: "</span> <span class="o">+</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>  
+<span class="p">});</span>
+</code></pre>
+
+<p><code class="prettyprint">geofencing.getPageRegion( successCallback, errorCallback )</code></p>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Gets the region associated with current page.</p>
+
+<p>When user clicks by notification applications will open the new page.</p>
+
+<p>From this page JS can be called this method to get the region which was associated with notification.</p>
+
+<h5 id="arguments">Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">succesCallback</code> optional</li>
+</ul>
+
+<p>Success callback. Called when function finished without errors</p>
+
+<p>Callback parameter is object which contains:</p>
+
+<p>- <code class="prettyprint">region</code> - Associated regionInfo objects or <em>null</em>. (Object)</p>
+
+<ul>
+<li><code class="prettyprint">errorCallback</code> optional</li>
+</ul>
+
+<p>Error Callback. Called when function return error.</p>
+
+<h5 id="return-value">Return Value</h5>
+
+<ul>
+<li><a href="#kernel-promise">RBCPromise</a> object</li>
+</ul>
+
+<h3 id="events">Events</h3>
+
+<h4 id="geofencing.didentertoregion">geofencing.didEnterToRegion</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when the device enters to the monitored region.</p>
+
+<h5 id="callback-arguments">Callback Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">region</code> - regionInfo object. (Object)</li>
+</ul>
+
+<h4 id="geofencing.didexitfromregion">geofencing.didExitFromRegion</h4>
+
+<h5 id="discussion">Discussion</h5>
+
+<p>Event received when the device exits from the monitored region.</p>
+
+<h5 id="callback-arguments">Callback Arguments</h5>
+
+<ul>
+<li><code class="prettyprint">region</code> - regionInfo object. (Object)</li>
+</ul>
+
+          
+          
+          
+          <h1 id="bodhi-cloud-api">Bodhi Cloud API</h1>
+
+<p>The Bodhi Cloud API is a set of secure APIs that are used to store your data.  To access the Bodhi Cloud API, you need to login with you user and password which is provided by Hot Schedules.  The API docs are available at this location: <a href="https://api.bodhi.space/apidocs/index.html">https://api.bodhi.space/apidocs/index.html</a>.  If you enter your credentials (username and password) and click Explore, you will see a list of API which you can access for your namespace.  The Bodhi API are REST APIs that returns JSON for all responses.  Each API has examples and an opportunity to <em><em>try it out</em></em>.  YOu can add data using our provided types or create your own type.  NOTE: Should you create your own type, the new type will show up in the API Documentation for your namespace.</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>

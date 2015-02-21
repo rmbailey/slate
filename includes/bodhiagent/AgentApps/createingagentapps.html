@@ -1,0 +1,392 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="../../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../../../javascripts/all_nosearch.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="includes includes_bodhiagent includes_bodhiagent_AgentApps includes_bodhiagent_AgentApps_createingagentapps">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <a class="bodhi-logo" href="http://redbookconnect.github.io"> <img src="../../../images/logo.png" /> </a>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h2 id="agent-app-structure">Agent App Structure</h2>
+
+<p>You can create an application for the agent by following the steps below. </p>
+
+<p>App Structure</p>
+
+<p>Apps have 9 major categories:</p>
+
+<ul>
+<li>Descriptive Information</li>
+<li>Logger Settings</li>
+<li>App Settings</li>
+<li>Extensions</li>
+<li>Services</li>
+<li>Sources</li>
+<li>Pipelines</li>
+<li>Handlers</li>
+<li>The init function</li>
+</ul>
+
+<p>These categories are described below. </p>
+
+<h3 id="starting-structure">Starting Structure</h3>
+
+<ol>
+<li>Create a file called app.js.</li>
+<li>Insert the following code into the app.js file.</li>
+</ol>
+<pre class="highlight plaintext"><code>  //- Descriptive Information
+  name   : 'app-name',
+  version: '0.0.1',
+
+  //- Logger Settings
+  logger : {
+    filename: 'logger-filename.log',
+    level   : '' // The level of logging for the app
+  },
+
+  //- App Settings
+  settings: [
+    {property  : '',
+     value     : ''},
+  ],
+
+  //- Extensions
+  extensions: [
+    {file      : ''}
+  ],
+
+  //- Services
+  services: [
+    {
+     name     : '',
+     provider : '',
+    } 
+  ],
+
+  //- Sources
+  sources: [
+    { 
+    name   : '',
+    factory: '',
+    provider: {
+        bind: '',
+        listen : '',
+        close  : ''
+      },
+      bindings: {'eventName'}
+    }
+  ],
+
+  //- Pipelines
+  pipelines: [
+    {
+      name: 'name-of-pipeline',
+      subscriptions: ['name-of-event-that-the-pipeline-subscribes-to'],
+      steps: [
+        {fn: 'extension:name-of-function', props: {key: 'value'},
+        {fn: 'extension:name-of-function', props: {key: 'value'},
+      ]
+    }
+  ],
+
+  //- Handlers
+  handlers: [
+    name: 'name-of-handler',
+    subscriptions: 'name-of-event-the-handler-subscribes-to',
+    fn: '',
+    props: { name: '$key:value' }
+
+  ],
+
+  //- init function, this function is executed after the agent is done with setup
+  init: function(done) {
+    // statements here
+    done();
+  }
+
+}
+</code></pre>
+
+<h4 id="1.-descriptive-info">1. Descriptive Info</h4>
+
+<p>This contains identification information for your app.</p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>  name   : 'app-name',
+  version: '0.0.1',
+  dir    : '',
+  enabled: 
+
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name for the application</td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Yes</td>
+<td>The version number for the application</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>string</td>
+<td>Yes</td>
+<td>Root filesystem path for the application</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>Boolean</td>
+<td>Preferred</td>
+<td>Whether the app is enabled or not</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>Preferred</td>
+<td>Your organization&rsquo;s name</td>
+</tr>
+</tbody></table>
+
+<h4 id="2.-logger-info">2. Logger Info</h4>
+
+<p>These properties determine the log filename and amount of detail that would be recorded to the log file. </p>
+
+<p>The levels of logging are as follows, listed from the least amount of detail to the most.</p>
+
+<ol>
+<li>error</li>
+<li>warning</li>
+<li>info</li>
+<li>verbose</li>
+<li>debug</li>
+</ol>
+
+<p>Note: The logger cannot include a reference to the settings, since it is loaded prior to the settings.</p>
+
+<h5 id="sample">Sample</h5>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>level</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name for the application</td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>Yes</td>
+<td>The version number for the application</td>
+</tr>
+</tbody></table>
+
+<h4 id="3.-app-settings">3. App Settings</h4>
+
+<p>Your app can have settings by declaring them within the settings object. These settings can then be used throughout your application&rsquo;s code. These values will take the highest precedence in the processing of settings. The precedence rules are:</p>
+
+<ol>
+<li>App.js settings object (highest precedence)</li>
+<li>Any settings within the js/json files in the settings folder</li>
+<li>Any settings added by an extension (lowest precedence)</li>
+</ol>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>[ {property: 'keys:consumerKey', value: 'wWbo8MBQ0nQ' },
+  {property: 'rootPath', value: path.join(process.cwd(), 'input') }]
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>property</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name for your property</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string, function, Boolean, number, object</td>
+<td>Yes</td>
+<td>The value of your setting</td>
+</tr>
+</tbody></table>
+
+<h4 id="4.-extensions">4. Extensions</h4>
+
+<p>Your application may use one or more extensions. Extensions can provide potential configuration components or actual runtime components. Extensions are a good way to design resuable components that can be shared and reused across projects. </p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>extensions: [ file: {}]
+</code></pre>
+
+<p>Extensions are loaded in the order in which they are specified. </p>
+
+<h4 id="5.-services">5. Services</h4>
+
+<p>Your app can contain a service. A service is an object that represents a concrete extension of the API.</p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>[ { name: 'keys:consumerKey', value: 'wWbo8MBQ0nQ' },
+  {property: 'rootPath', value: path.join(process.cwd(), 'input') }]
+</code></pre>
+
+<h5 id="specification">Specification</h5>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name of your service</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>Yes</td>
+<td>A function or reference to a plugin that creates an object</td>
+</tr>
+<tr>
+<td>args</td>
+<td>array of strings, functions, objects, booleans</td>
+<td>Optional</td>
+<td>a list of the dependencies used by the service</td>
+</tr>
+<tr>
+<td>factory</td>
+<td>string (constructor, function, literal)</td>
+<td>Optional</td>
+<td>An enumeration that describes alternate instantiation behavior for the service</td>
+</tr>
+</tbody></table>
+
+<h5 id="implicit-properties">Implicit Properties</h5>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>this.name</td>
+<td>the name of the service</td>
+</tr>
+<tr>
+<td>this.logger</td>
+<td>A reference to the context&rsquo;s logger</td>
+</tr>
+<tr>
+<td>this.publish</td>
+<td>a handle to publish a message to the context</td>
+</tr>
+</tbody></table>
+
+<h4 id="6.-sources">6. Sources</h4>
+
+<p>A source is an object that sources external events. By creating a source, you can bind events to listeners and start functions and pipelines once the events have been emitted.</p>
+
+<h5 id="sample">Sample</h5>
+<pre class="highlight plaintext"><code>[ {
+   name: 'sampleSource',
+   provider: 'compris:dir',
+   args: ['$settings:rootPath'],
+   bindings: { 'created' : 'read' }
+   } ]
+</code></pre>
+
+<h5 id="specification">Specification</h5>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+<td>Your name of your service</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>Yes</td>
+<td>A function or reference to a plugin that creates an object</td>
+</tr>
+<tr>
+<td>args</td>
+<td>array of strings, functions, objects, booleans</td>
+<td>Optional</td>
+<td>a list of the dependencies used by the service</td>
+</tr>
+<tr>
+<td>factory</td>
+<td>string (constructor, function, literal)</td>
+<td>Optional</td>
+<td>An enumeration that describes alternate instantiation behavior for the service</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
