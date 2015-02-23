@@ -1,9 +1,8 @@
 #Bodhi Cloud API Tutorials
 
 ## Overview
-The Bodhi Cloud API is secure environment where you can store your data and define secure access to various users based on permissions through a concept called Profiles.  Profiles are how you associate a user with your data, you can grant full, read, write and update privileges to your data using the Bodhi Cloud API.  The Bodhi Cloud API is a set of REST APIs that always return JSON. 
 
-These tutorials are designed to show a user how to log in, see all the users in your namespace, create a type, delete that type, show you how to perform queries using the Bodhi Cloud APIs.  
+These tutorials are designed to show a user how to log in, see all the users in a namespace, create a type, delete that type, and perform queries using the Bodhi Cloud APIs.  
 
 ## Getting Started
 *Prerequisites*: You will need your login credentials which are provided by your Hot Schedules representative.  
