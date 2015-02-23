@@ -39,7 +39,41 @@ Scroll to User, Click User
 
 Scroll to User, Click User
 
-* Scroll through the output and note various users assigned to your namespace
+* Click Try it out!
+![CloudAPI_ClickGetUsersTryItOut](/images/CloudAPI_ClickUsersTryItOut.png?raw=true "Click Try it out!")
+
+Click Try it out!
+
+* Scroll through the JSON output and note various users assigned to your namespace NOTE: The same output can be obtained just for your login using the Me type and click Get /me, you will see all information about your username and access
+* Each user will have similar JSON as noted below, depending on their access, they may or may not have a .admin profile.
+```
+"params": [
+      "User",
+      {
+        "sys_created_at": "2015-02-20T21:19:11+0000",
+        "profiles": [
+          "<your namespace>.admin",
+          "base.user",
+          "base.user__system"
+        ],
+        "authorizations": [
+          {
+            "namespace": "<your namespace>",
+            "read": true
+          }
+        ],
+        "usertype": "person",
+        "sys_id": "6cae6b8a-acd9-4a15-874e-73e933cd51af",
+        "password": "$2a$12$fLpPr1dWs5ULE1He5m1dwOy3wQK8q3yqWvo/VUvNo37l.ZP51pP..",
+        "sys_version": 2,
+        "sys_modified_at": "2015-02-20T21:19:11+0000",
+        "sys_modified_by": "system",
+        "sys_namespace": "system",
+        "email": "<your email>",
+        "sys_created_by": "system",
+        "username": "<your username>",
+        "sys_type_version": 2
+```
 
 ## How to create a new type in your namespace
 
