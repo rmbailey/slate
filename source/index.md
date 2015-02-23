@@ -10,7 +10,7 @@ toc_footers:
 includes:
 
   - gettingstarted
-  - bodhiagent/_index
+  - bodhiagent/gettingstarted
   - bodhiagent/envsetup
   - bodhiagent/howto
   - bodhiagent/AgentApps/index

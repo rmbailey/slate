@@ -1,4 +1,4 @@
-# Mobile API
+# Bodhi Mobile
 
 Mobile Container API
 
