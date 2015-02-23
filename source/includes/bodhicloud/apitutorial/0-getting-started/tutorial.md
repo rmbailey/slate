@@ -34,7 +34,8 @@ The following steps will show allow you to see the users in your Namespace and s
 ![CloudAPI_ClickUser](/images/CloudAPI_ClickUser.png?raw=true "Scroll to User, Click User")
 
 Scroll to User, Click User
-* 
+
+* Scroll to /Users
 
 ## How to create a new type in your namespace
 
