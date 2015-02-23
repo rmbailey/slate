@@ -38,6 +38,6 @@ includes:
   - bodhicloud/bodhiapi
   - bodhicloud/envsetup
   - bodhicloud/gettingstarted
-
+  - bodhicloud/apitutorial/0-getting-started/tutorial
 search: true
 ---
