@@ -22,6 +22,8 @@ The Bodhi Cloud API Documentation is a rich set of documentation geared towards 
 
 Logging in to the Bodhi API Documentation
 
+*Note:* Once you are logged in with a valid username and password, you will see your Namespace auto-fill. 
+
 ## How to access users in your namespace
 
 ## How to create a new type in your namespace
