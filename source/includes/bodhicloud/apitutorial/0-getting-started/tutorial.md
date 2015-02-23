@@ -46,6 +46,7 @@ Click Try it out!
 
 * Scroll through the JSON output and note various users assigned to your namespace NOTE: The same output can be obtained just for your login using the Me type and click Get /me, you will see all information about your username and access
 * Each user will have similar JSON as noted below, depending on their access, they may or may not have a <namespace>.admin profile.
+
 ```
 "params": [
       "User",
