@@ -14,7 +14,7 @@ Logging in to the Bodhi API Documentation is the firs step in accessing and revi
 ## How Do I Login
 * Go to [https://api.bodhi.space/apidocs/index.html](https://api.bodhi.space/apidocs/index.html)
 * Login using the credentials provided to you from your provider:
-* 
+
 ![CloudAPI_LogginIn](/images/CloudAPI_LogginIn.png?raw=true "Logging in to the Bodhi API Documentation"
  
 Logging in to the Bodhi API Documentation
