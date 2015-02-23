@@ -11,7 +11,10 @@ These tutorials are designed to show a user how to log in, see all the users in 
 
 Logging in to the Bodhi API Documentation is the firs step in accessing and reviewing the Bodhi APIs as well as the various data types provided by default.  This set of tutorials are designed to show you how to login to the API Documentation, how to view, query and access the APIs and data types, and how to create new types.
 
-## How Do I Login
+The Bodhi Cloud API Documentation is a rich set of documentation geared towards REST API developers. The documetation is designed to both show the Bodhi's built-in types as well as shows your own custom types as well.  These simple tutorials are geared twoards showing how to use the documentation.  
+
+## How Do I Login to the Bodhi Cloud API Documentation
+
 * Go to [https://api.bodhi.space/apidocs/index.html](https://api.bodhi.space/apidocs/index.html)
 * Login using the credentials provided to you from your provider:
 
