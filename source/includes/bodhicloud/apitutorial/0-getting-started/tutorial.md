@@ -75,13 +75,3 @@ Click Try it out!
         "username": "<your username>",
         "sys_type_version": 2
 ```
-
-## How to create a new type in your namespace
-
-## How to delete a type you created in your namespace
-
-## How to create a new user in your namespace
-
-## How to associate a profile to a user
-
-## How to create a new store in your namespace
