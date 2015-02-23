@@ -26,6 +26,16 @@ Logging in to the Bodhi API Documentation
 
 ## How to access users in your namespace
 
+Once Logged In to the Bodhi Cloud Documentation, you can test out the REST APIs directly in your Namespace.  This tutorial will show you how to acess the users in your namespace and see what access rights each user has.  In order to see all the users of your Namespace, you should be logged in as an administrator.  
+
+The following steps will show allow you to see the users in your Namespace and see what profile each user is assigned:
+* Pre-requistes: Ensure you have logged in to your Namespace, see How Do I Login to the Bodhi Cloud API Documentation (above)
+* Scroll down to the User type 
+![CloudAPI_ClickUser](/images/CloudAPI_ClickUser.png?raw=true "Scroll to User, Click User")
+
+Scroll to User, Click User
+* 
+
 ## How to create a new type in your namespace
 
 ## How to delete a type you created in your namespace
