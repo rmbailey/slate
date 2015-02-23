@@ -8,13 +8,15 @@ These tutorials are designed to show a user how to log in, see all the users in 
 
 # Getting Started
 *Prerequisites*: You will need your login credentials which are provided by your Hot Schedules representative.  
-Logging in to the Bodhi API Documentation is the firs step in accessing and reviewing the Bodhi APIs as well as the various data types provided by default.  This documentation is designed to show you the APIs and data types, how to access them, and how to create new types should you find that the data types provided by Bodhi do not suit your business need.  Should you find that the existing types do not have the right attributes and/or 
+
+Logging in to the Bodhi API Documentation is the firs step in accessing and reviewing the Bodhi APIs as well as the various data types provided by default.  This set of tutorials are designed to show you how to login to the API Documentation, how to view, query and access the APIs and data types, and how to create new types.
 
 ## How Do I Login
 * Go to [https://api.bodhi.space/apidocs/index.html](https://api.bodhi.space/apidocs/index.html)
-* Login using the credentials provided to you from your provider, for demonstration purposes I am assuming your credentials are as follows: UserName=demouser1, Password=demopwd
-* <need to figure out how to add an image>
-* 
+* Login using the credentials provided to you from your provider:
+![CloudAPI_LogginIn](/images/CloudAPI_LogginIn.png?raw=true "Logging in to the Bodhi API Documentation"
+![alt text](/images/agent_ver_01.png?raw=true "figure  2")  
+Logging in to the Bodhi API Documentation
 
 ## How to access users in your namespace
 
