@@ -34,6 +34,12 @@ The following steps will show allow you to see the users in your Namespace and s
 Scroll to User, Click User
 
 * Scroll to /Users
+* Click Get /Users to expose the REST APIs available for that type
+![CloudAPI_ClickGetUsers](/images/CloudAPI_ClickGetUsers.png?raw=true "Click GET /User")
+
+Scroll to User, Click User
+
+* Scroll through the output and note various users assigned to your namespace
 
 ## How to create a new type in your namespace
 
